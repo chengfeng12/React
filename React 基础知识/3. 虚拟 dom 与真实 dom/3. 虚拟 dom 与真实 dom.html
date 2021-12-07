@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+
+  <div id="real"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../js/babel.min.js"></script>
+
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    // 1. 创建虚拟 dom
+
+    /**
+     * 虚拟 DOM
+     *    1. 本质是 Object 类型的对象
+     *    2. 虚拟 DOM 属性少，因为虚拟 DOM 是 React 内部在用，无需真实 DOM 上全部属性
+     *    3. 虚拟 DOM 最终会被转换为真实 DOM
+     */
+    const span = <span>Hello！！！</span>
+    console.log(span, "查看虚拟 dom");
+    const TDOM = document.getElementById("real");
+    console.log(TDOM, "真实 DOM debugger 可查看");
+    // 2. 渲染虚拟 DOM 到页面
+    ReactDOM.render(span, document.getElementById("test"));
+  </script>
+</body>
+</html>

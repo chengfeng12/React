@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../js/babel.min.js"></script>
+
+  <!-- 此处应为 text/babel -->
+  <!-- <script type="text/babel"> -->
+  <script type="text/javascript">
+    /* JSX 创建 */
+    /* // 1. 创建虚拟 dom
+    const span = <span>Hello！！！</span>
+    // 2. 渲染虚拟 DOM 到页面
+    ReactDOM.render(span, document.getElementById("test")); */
+
+    const VDOM = React.createElement('h1', {
+      class: "hello"
+    }, 'hello javascript!!!')
+
+    ReactDOM.render(VDOM, document.getElementById("test"));
+
+  </script>
+</body>
+</html>
