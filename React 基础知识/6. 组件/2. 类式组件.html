@@ -18,22 +18,25 @@
 
   <!-- 此处应为 text/babel -->
   <script type="text/babel">
-    /**
-      * 注意：
-      *     1. 函数名必须是大写字母开头
-      *     2. render 时，必须是以标签的形式
-     */
-    // 1. 创建函数式组件
-    const MyCompontent = () => { // babel 编译完成后，开启严格模式，this 变为 undefined
-      console.log(this, 'this');
-      return <p>这是函数式组件，适用于简单逻辑的组件</p>
+    // 1. 创建类式组件 （复杂组件的定义）
+    class MyCompontent extends React.Component {
+      // render 放在哪？ => MyComponent 的原型对象上，供实例使用。
+      // render this是？ => MyComponent 的实例对象。 MyComponent 组件实例对象
+      render() {
+        console.log(this, 'this');
+        return (
+          <p>我是类式组件</p>
+        )
+      }
     }
     // 2. 渲染组件 到页面
     ReactDOM.render(<MyCompontent />, document.getElementById("App"));
+
     /*
-        1. React 解析组件标签，找到 MyCompontent
-        2. 发现组件时 函数式组件，随后调用该函数，把返回的虚拟 DOM 转为真实 DOM 输出到页面中
-      */
+      1. React 解析组件标签，找到 MyCompontent
+      2. 发现组件是类定义的，随后 new 出该类的实例，并通过该实例，调用到原型上的 render 方法
+      3. 将 render 返回的虚拟 DOM 转为真实 DOM 并渲染到页面中。
+    */
   </script>
 </body>
 </html>
