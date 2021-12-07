@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="test"></div>
+  <div id="App"></div>
   
   <!-- 引入 react 库 -->
   <script src="../js/react.development.js"></script>
@@ -23,14 +23,13 @@
     /* // 1. 创建虚拟 dom
     const span = <span>Hello！！！</span>
     // 2. 渲染虚拟 DOM 到页面
-    ReactDOM.render(span, document.getElementById("test")); */
+    ReactDOM.render(span, document.getElementById("App")); */
 
     const VDOM = React.createElement('h1', {
       class: "hello"
     }, 'hello javascript!!!')
 
-    ReactDOM.render(VDOM, document.getElementById("test"));
-
+    ReactDOM.render(VDOM, document.getElementById("App"));
   </script>
 </body>
 </html>

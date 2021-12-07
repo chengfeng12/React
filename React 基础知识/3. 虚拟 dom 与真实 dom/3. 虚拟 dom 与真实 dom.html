@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="test"></div>
+  <div id="App"></div>
 
   <div id="real"></div>
   
@@ -33,7 +33,7 @@
     const TDOM = document.getElementById("real");
     console.log(TDOM, "真实 DOM debugger 可查看");
     // 2. 渲染虚拟 DOM 到页面
-    ReactDOM.render(span, document.getElementById("test"));
+    ReactDOM.render(span, document.getElementById("App"));
   </script>
 </body>
 </html>
