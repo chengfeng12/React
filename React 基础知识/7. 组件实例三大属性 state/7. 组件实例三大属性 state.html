@@ -23,27 +23,30 @@
       constructor(props) {
         super(props);
         this.state = {
-          isHot: false
+          isHot: false,
+          msg: '这是一段文字'
         }
+        /* 在实力上 重新添加一个 原型上的方法，并改变 this 指向 */
+        this.switchEvent = this.switchEvent.bind(this);
       }
 
       switchEvent() {
-        this.state.isHot = !this.state.isHot;
+        this.setState({
+          isHot: !this.state.isHot
+        })
+
+        // 不能直接修改属性的值，需要通过 setState 方法修改属性，且是合并，不是替换的方式
+        // this.state.isHot = !this.state.isHot;
       }
       
       render() {
-        let { isHot } = this.state;
         return (
-          <h1 id="title" onClick={this.switchEvent}>今天天气很{`${isHot ? '炎热' : '凉爽'}`}!!!</h1>
+          <h1 id="title" onClick={this.switchEvent}>今天天气很{`${this.state.isHot ? '炎热' : '凉爽'}`}，{this.state.msg}!!!</h1>
         )
       }
-
-      
     }
     // 2. 渲染组件 到页面
     ReactDOM.render(<MyCompontent />, document.getElementById("App"));
-
-
 
 
     // 原生事件
