@@ -18,18 +18,27 @@
 
   <!-- 此处应为 text/babel -->
   <script type="text/babel">
-    // 1. 创建类式组件 （复杂组件的定义
+    // 1. 创建类式组件 （复杂组件的定义）
     class MyCompontent extends React.Component {
+
+      // 只在创建实例的时候调用 调用一次
       constructor(props) {
         super(props);
         this.state = {
           isHot: false,
-          msg: '这是一段文字'
+          msg: '微风'
         }
         /* 在实力上 重新添加一个 原型上的方法，并改变 this 指向 */
         this.switchEvent = this.switchEvent.bind(this);
       }
 
+      // 事件触发几次调用几次 
+
+      /**
+       * switchEvent 放在哪里？ ---> MyCompontent 的原型上，供实例使用
+       * 由于 switchEvent 是作为 onClick 的回调， 所以不是通过实例调用的，是直接调用
+       * 类中的方法默认开启局部严格模式，所以 switchEvent 中的 this 为 undefined
+        */
       switchEvent() {
         this.setState({
           isHot: !this.state.isHot
@@ -39,6 +48,7 @@
         // this.state.isHot = !this.state.isHot;
       }
       
+      // 调用 1 + n 次， 1 是初始化， n 是数据发生改变，更新视图
       render() {
         return (
           <h1 id="title" onClick={this.switchEvent}>今天天气很{`${this.state.isHot ? '炎热' : '凉爽'}`}，{this.state.msg}!!!</h1>

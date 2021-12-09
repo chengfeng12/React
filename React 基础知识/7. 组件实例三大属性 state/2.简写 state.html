@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/babel.min.js"></script>
+
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    // 1. 创建类式组件 （复杂组件的定义）
+    class MyCompontent extends React.Component {
+      
+      // 初始化状态
+      state = {
+        isHot: false,
+        msg: '微风'
+      }
+      
+      // 自定义方法 ---> 要采用赋值语句 + 箭头函数的形式
+      /**
+       * 注意：
+       *    1. 如果不是箭头函数，this 依然是 undefined
+       *    2. 直接赋值是把方法或者属性 添加到 类中，不再挂载到原型，供实例使用
+        */
+      switchEvent = () => {
+        console.log(this);
+        this.setState({
+          isHot: !this.state.isHot
+        })
+      }
+
+      render() {
+        return (
+          <h1 id="title" onClick={this.switchEvent}>今天天气很{`${this.state.isHot ? '炎热' : '凉爽'}`}，{this.state.msg}!!!</h1>
+        )
+      }
+    }
+    // 2. 渲染组件 到页面
+    ReactDOM.render(<MyCompontent />, document.getElementById("App"));
+  </script>
+</body>
+</html>
