@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  <div id="App2"></div>
+  <div id="App3"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/babel.min.js"></script>
+
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    class MyComponents extends React.Component {
+
+      render() {
+        console.log(this);
+        let { name, age, gender } = this.props;
+        return (
+          <ul>
+            <li>name: {name}</li>
+            <li>age: {age}</li>
+            <li>gender: {gender}</li>
+          </ul>
+        )
+      } 
+    }
+
+    ReactDOM.render(<MyComponents name="Tom" age="12" gender="男" />, document.getElementById('App'));
+    ReactDOM.render(<MyComponents name="Tom2" age="22" gender="女" />, document.getElementById('App2'));
+
+    const info = {
+      name: "老张",
+      age: 18,
+      gender: "女"
+    }
+    ReactDOM.render(<MyComponents {...info} />, document.getElementById('App3'));
+
+  </script>
+</body>
+</html>
