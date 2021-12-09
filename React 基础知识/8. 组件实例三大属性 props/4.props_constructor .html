@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  <div id="App2"></div>
+  <div id="App3"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    class MyComponents extends React.Component {
+
+      constructor(props) {
+        super(props);
+        // 构造器是否接收 props，是否传递给 super，取决于：是否希望在构造器中通过 this 访问 props
+        console.log("constructor", this.props);
+      }
+
+      // 限制 props 的类型 和 必传
+      static propTypes = {
+        // name: React.PropTypes.string //16 版本之前的语法，16 版本之后更改
+        name: PropTypes.string.isRequired, // name 类型为 String 类型，必填
+        age: PropTypes.number, // age 类型为 Number 类型
+        gender: PropTypes.string, // gender 类型为 String 类型
+        speak: PropTypes.func // speak 类型为 function 类型
+      }
+
+      // 添加 props 的默认值
+      static defaultProps = {
+        age: 18,
+        gender: "男女",
+      }
+
+      render() {
+        let { name, age, gender } = this.props;
+        return (
+          <ul>
+            <li>name: {name}</li>
+            <li>age: {age + 1}</li>
+            <li>gender: {gender}</li>
+          </ul>
+        )
+      } 
+    }
+
+    ReactDOM.render(<MyComponents name="老王" age={12} />, document.getElementById('App'));
+  </script>
+</body>
+</html>
