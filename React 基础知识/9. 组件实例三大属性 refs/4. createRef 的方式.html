@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  <div id="App2"></div>
+  <div id="App3"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    class MyComponents extends React.Component {
+      /**
+       * React.createRef 调用后可以返回一个容器，该容器可以存储被 ref 所标识的节点
+      */
+      constructor() {
+        super();
+        this.input1 = React.createRef()
+      }
+      
+      /**
+       * current 是必须的，不能修改
+       * 
+        */
+      showInput1 = () => {
+        console.log(this);
+        alert(this.input1.current.value);
+      }
+
+      render() {
+        return (
+          <div>
+            <input ref={this.input1} type="text" />
+            <button onClick={this.showInput1}>点击查看数据</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  <div id="App2"></div>
+  <div id="App3"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    class MyComponents extends React.Component {
+      /**
+       * 1. 通过 onXxx 属性指定事件处理函数（注意大小写）
+       *    a.React 使用的是自定义（合成）事件，而不是使用的原生 DOM 事件  ----> 为了更好的兼容性
+       *    b.React 中的事件是通过时间委托的方式处理的（委托给组件最外层的元素） ----> 为了更高效
+       * 2. 通过 event.target 得到发生事件的 DOM 元素对象
+       * 
+        */
+      input1 = React.createdRef()
+      showInput1 = () => {
+        alert(this.input1.current.value);
+      }
+      
+      /**
+       *  不要过渡使用 ref
+       *      绑定的事件，和 标识的 DOM 节点一致时，可采用 event
+       *  */
+      showInput2 = (event) => {
+        alert(event.target.value);
+      }
+
+      render() {
+        return (
+          <div>
+            <input ref={input1} type="text" />  
+            <button onClick={this.showInput1}>点击查看左侧的数据</button>
+            <input type="text" onBlur={this.showInput2} />  
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  </script>
+</body>
+</html>
