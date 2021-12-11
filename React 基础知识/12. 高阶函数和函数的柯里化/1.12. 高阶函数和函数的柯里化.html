@@ -22,6 +22,16 @@
   <!-- 此处应为 text/babel -->
   <script type="text/babel">
     class MyComponents extends React.Component {
+      /**
+       * 高阶函数：如果一核函数符合下面 2 个规范中的任何一个，那该函数就是高阶函数。
+       *          1. 若 A 函数，接受的参数是一个函数，那么 A 就可以称之为高阶函数。
+       *          2. 若 A 函数，调用的返回值依然是一个函数，那么 A 就可以称之为高阶函数。
+       *          常见的高阶函数有： Promise setTimeout arr.map 等。
+       * 
+       *  
+       *  函数的柯里化： 通过函数调用继续返回函数的方式，实现多次接收参数，最后统一处理的函数编码形式。
+        */
+
       // 初始化状态
       state = {
         userName: "",
@@ -34,24 +44,27 @@
         alert(`用户名是：${this.state.userName}，密码是：${this.state.password}`);
       }
 
-      changeUserName = (event) => {
-        this.setState({
-          userName: event.target.value
-        })
-      }
-
-      changePassword = (type, event) => {
-        console.log(type, event.target.value);
-        this.setState({
-          password: event.target.value
-        })
+      changeData = (type) => {
+        /**
+         * 返回值为函数 高阶函数
+         * 
+         * 返回值为函数，继续调用，且最后的值统一处理  函数的柯里化
+         * 
+          */
+        return (event) => {
+          console.log(type, event.target.value);
+          this.setState({
+            [type]: event.target.value
+          })
+        }
+        
       }
 
       render() {
         return (
           <form action="http://yinxvran.vip" onSubmit={this.login}>
-            用户名：<input type="text" onChange={this.changeUserName} name="userName" />  
-            密码：<input type="text" onChange={(event) => this.changePassword('password', event)} name="password" />
+            用户名：<input type="text" onChange={this.changeData('userName')} name="userName" />  
+            密码：<input type="text" onChange={this.changeData('password')} name="password" />
             <button>登录</button>
           </form>
         )

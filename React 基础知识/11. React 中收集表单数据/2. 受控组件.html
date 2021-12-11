@@ -30,7 +30,7 @@
         */
       login = (event) => {
         const { userName, password } = this;
-        event.preventDefault(); // 组织页面刷新
+        event.preventDefault(); // 阻止页面刷新
         alert(`用户名是：${userName.current.value}，密码是：${password.current.value}`);
       }
 
