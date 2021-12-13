@@ -10,9 +10,9 @@
   <div id="App"></div>
   
   <!-- 引入 react 库 -->
-  <script src="../../js/16.8.4/react.development.js"></script>
+  <script src="../../js/17.0.1/react.development.js"></script>
   <!-- 引入 react-dom 库，用于操作 dom -->
-  <script src="../../js/16.8.4/react-dom.development.js"></script>
+  <script src="../../js/17.0.1/react-dom.development.js"></script>
   <!-- 引入 babel 用于将 jsx 转换为 js -->
   <script src="../../js/16.8.4/babel.min.js"></script>
   <!-- 引入 prop-types 用于限制 props 的类型 -->
@@ -37,15 +37,6 @@
      *      1. componentWillUnmount() ====> 常用
      *         一般在这个钩子中做一些收尾工作，例如：关闭定时器，取消订阅消息等
       */
-
-
-    /**
-     * 回调函数
-     *  1. 是你定义的
-     *  2. 你没有调用
-     *  3. 最后执行了
-      */
-
     class MyComponents extends React.Component {
 
       constructor(props) {
@@ -206,7 +197,7 @@
     // ReactDOM.render(<MyComponents />, document.getElementById('App'));
 
 
-    ReactDOM.render(<Father />, document.getElementById('App'));
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
   </script>
 </body>
 </html>
