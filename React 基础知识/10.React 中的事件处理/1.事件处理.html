@@ -12,9 +12,9 @@
   <div id="App3"></div>
   
   <!-- 引入 react 库 -->
-  <script src="../../js/react.development.js"></script>
+  <script src="../../js/16.8.4/react.development.js"></script>
   <!-- 引入 react-dom 库，用于操作 dom -->
-  <script src="../../js/react-dom.development.js"></script>
+  <script src="../../js/16.8.4/react-dom.development.js"></script>
   <!-- 引入 babel 用于将 jsx 转换为 js -->
   <script src="../../js/babel.min.js"></script>
   <!-- 引入 prop-types 用于限制 props 的类型 -->
@@ -29,7 +29,8 @@
        * 2. 通过 event.target 得到发生事件的 DOM 元素对象
        * 
         */
-      input1 = React.createdRef()
+      input1 = React.createRef()
+
       showInput1 = () => {
         alert(this.input1.current.value);
       }
@@ -45,7 +46,7 @@
       render() {
         return (
           <div>
-            <input ref={input1} type="text" />  
+            <input ref={this.input1} type="text" />  
             <button onClick={this.showInput1}>点击查看左侧的数据</button>
             <input type="text" onBlur={this.showInput2} />  
           </div>
