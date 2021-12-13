@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  <div id="App2"></div>
+  <div id="App3"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    // 生命周期回调函数 --- 生命周期钩子函数 ---- 生命周期函数 ---- 生命周期钩子
+    /**
+     * 回调函数
+     *  1. 是你定义的
+     *  2. 你没有调用
+     *  3. 最后执行了
+      */
+
+    class MyComponents extends React.Component {
+
+      constructor(props) {
+        console.log("Count---constructor");
+        super(props);
+        this.state = {
+          count: 1
+        }
+      }
+      
+      add = () => {
+        let { count } = this.state;
+        this.setState({
+          count: count += 1
+        })
+      }
+      
+      //卸载组件的回调
+      death = () => {
+        // 卸载组建
+        ReactDOM.unmountComponentAtNode(document.getElementById('App'));
+      }
+      // 强制更新
+      force = () => {
+        console.log("Count---forceUpdate");
+        this.forceUpdate();
+      }
+      
+      // 组件挂载之前
+      componentWillMount() {
+        console.log("Count---componentWillMount");
+      }
+      // 组件挂载完毕调用
+      componentDidMount() {
+        console.log("Count---componentDidMount");
+      }
+
+      // 组件卸载之前调用
+      componentWillUnmount() {
+        console.log("count---componentWillUnmount");
+      }
+      
+      // 组件是否允许被更新钩子 （控制组件更新的 “阀门”）
+      /**
+       * 1。不写默认也会有一个，默认返回值为 true
+       * 2. 返回值为 false ，则不会关闭阀门，不会更新
+        */
+      shouldComponentUpdate() {
+        console.log("Count---shouldComponentUpdate");
+        return true
+      }
+
+      // 组件将要更新的钩子
+      componentWillUpdate() {
+        console.log("Count---componentWillUpdate");
+      }
+
+      // 组件更新完成
+      componentDidUpdate() {
+        console.log("Count---componentDidUpdate");
+      }
+
+      // 初始化时调用，状态更改时调用
+      render() {
+        console.log("Count---render");
+        return (
+          <div>
+            <h2>sum???{this.state.count}</h2>
+            <button onClick={this.add}>点击+1</button>  
+            <button onClick={this.death}>销毁</button>  
+            <button onClick={this.force}>不更改 state 数据，强制更新</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  </script>
+</body>
+</html>
