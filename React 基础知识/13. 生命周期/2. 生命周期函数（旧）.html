@@ -22,6 +22,25 @@
   <!-- 此处应为 text/babel -->
   <script type="text/babel">
     // 生命周期回调函数 --- 生命周期钩子函数 ---- 生命周期函数 ---- 生命周期钩子
+
+    /**
+     *  1. 初始化阶段：由 ReactDOM.render() 触发 --- 初次渲染
+     *      1. constructor()
+     *      2. componentWillMount()
+     *      3. render()
+     *      4. componentDidMount() =====> 常用
+     *         一般在这个钩子中做一些初始化的事，例如：开启定时器，网络请求，订阅消息等
+     *  2. 更新阶段：由组件内部的 this.setSate() 或者父组件 render 触发
+     *      1. shouldComponentUpdate()
+     *      2. componentWillUpdate()
+     *      3. render() ====> 必须有的
+     *      4. componentDidUpdate()
+     *  3. 卸载组件：由 ReactDOM.unmountComponentAtNode() 触发
+     *      1. componentWillUnmount() ====> 常用
+     *         一般在这个钩子中做一些收尾工作，例如：关闭定时器，取消订阅消息等
+      */
+
+
     /**
      * 回调函数
      *  1. 是你定义的
@@ -104,7 +123,92 @@
         )
       }
     }
-    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+
+    // 父组件
+    class Father extends React.Component{
+      constructor(props) {
+        console.log("Father---constructor");
+        super(props);
+        this.state = {
+          text: '默认文字'
+        }
+      }
+
+      changeValue = () => {
+        this.setState({
+          text: '更改之后的文字'
+        })
+      }
+
+      // 组件将要挂载的钩子
+      componentWillMount() {
+        console.log("Father---componentWillMount");
+      }
+
+      // 组件挂载完毕的钩子
+      componentDidMount() {
+        console.log("Father---componentDidMount"); // 子组件的 componentWillMount 先执行
+      }
+
+      // 组件将要更新的钩子
+      componentWillUpdate() {
+        console.log("Father-componentWillUpdate");
+      }
+
+      // 组件更新完毕的钩子
+      componentDidUpdate() {
+        /**
+         * 类似 冒泡事件
+          */
+        console.log("Father-componentDidUpdate"); // 子组件的 componentDidUpdate 执行完之后执行
+      }
+
+      render() {
+        return (
+          <div>
+            <h3>我是父组件组件</h3>
+            <button onClick={this.changeValue}>下一个值</button>
+            <Child text={this.state.text}></Child>
+          </div>
+        )
+      }
+    }
+
+    // 子组件
+    class Child extends React.Component{
+
+      // 组件将要挂载的钩子
+      componentWillMount() {
+        console.log("Child---componentWillMount");
+      }
+
+      // 组件将要接收到新属性钩子（第一次不执行，state 更新时执行）
+      componentWillReceiveProps(props) {
+        console.log("Child---componentWillReceiveProps", props);
+      }
+
+      // 组件将要更新的钩子
+      componentWillUpdate() {
+        console.log("Child-componentWillUpdate");
+      }
+
+      // 组件更新完毕的钩子
+      componentDidUpdate() {
+        console.log("Child-componentDidUpdate");
+      }
+
+      render() {
+        return (
+          <div>
+            <h3>我是子组件，接收的值为{this.props.text}</h3>  
+          </div>
+        )
+      }
+    }
+    // ReactDOM.render(<MyComponents />, document.getElementById('App'));
+
+
+    ReactDOM.render(<Father />, document.getElementById('App'));
   </script>
 </body>
 </html>
