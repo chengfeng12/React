@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .list {
+      width: 200px;
+      height: 150px;
+      background-color: aquamarine;
+      overflow: auto;
+    }
+    .news {
+      line-height: 30px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="App"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/17.0.1/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/17.0.1/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/17.0.1/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/17.0.1/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+    // 生命周期回调函数 --- 生命周期钩子函数 ---- 生命周期函数 ---- 生命周期钩子
+
+    /**
+     *  1. 初始化阶段：由 ReactDOM.render() 触发 --- 初次渲染
+     *      1. constructor()
+     *      2. UNSAFE_componentWillMount()
+     *      3. render()
+     *      4. componentDidMount() =====> 常用
+     *         一般在这个钩子中做一些初始化的事，例如：开启定时器，网络请求，订阅消息等
+     *  2. 更新阶段：由组件内部的 this.setSate() 或者父组件 render 触发
+     *      1. shouldComponentUpdate()
+     *      2. UNSAFE_componentWillUpdate()
+     *      3. render() ====> 必须有的
+     *      4. componentDidUpdate()
+     *  3. 卸载组件：由 ReactDOM.unmountComponentAtNode() 触发
+     *      1. UNSAFE_componentWillUnmount() ====> 常用
+     *         一般在这个钩子中做一些收尾工作，例如：关闭定时器，取消订阅消息等
+      */
+    class MyComponents extends React.Component {
+
+      state = {
+        newsList: [],
+      }
+
+      list = React.createRef()
+
+      componentDidMount() {
+        setInterval(() => {
+          let {newsList} = this.state;
+          let name = `新闻${newsList.length + 1}`;
+          this.setState({
+            newsList: [
+              name,
+              ...newsList
+            ]
+          })
+        }, 1000)
+      }
+
+      // 在更新之前获取快照
+      getSnapshotBeforeUpdate() {
+        console.log(this.list.current.scrollHeight);
+        // scollHeight
+        return this.list.current.scrollHeight
+      }
+
+      // 组件更新完成
+      componentDidUpdate(prevProps, prevstate, height) { // 更新之前的值 和 快照值
+        this.list.current.scrollTop += this.list.current.scrollHeight - height
+      }
+
+      // 初始化时调用，状态更改时调用
+      render() {
+        console.log("Count---render");
+        return (
+          <div className="list" ref={this.list}>
+            {
+              this.state.newsList.map(item => <p className="news" key={item}>{item}</p>)
+            }
+          </div>
+        )
+      }
+    }
+  
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  </script>
+</body>
+</html>

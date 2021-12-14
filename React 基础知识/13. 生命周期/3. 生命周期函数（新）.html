@@ -14,9 +14,9 @@
   <!-- 引入 react-dom 库，用于操作 dom -->
   <script src="../../js/17.0.1/react-dom.development.js"></script>
   <!-- 引入 babel 用于将 jsx 转换为 js -->
-  <script src="../../js/16.8.4/babel.min.js"></script>
+  <script src="../../js/17.0.1/babel.min.js"></script>
   <!-- 引入 prop-types 用于限制 props 的类型 -->
-  <script src="../../js/16.8.4/prop-types.js"></script>
+  <script src="../../js/17.0.1/prop-types.js"></script>
   <!-- 此处应为 text/babel -->
   <script type="text/babel">
     // 生命周期回调函数 --- 生命周期钩子函数 ---- 生命周期函数 ---- 生命周期钩子
@@ -24,17 +24,17 @@
     /**
      *  1. 初始化阶段：由 ReactDOM.render() 触发 --- 初次渲染
      *      1. constructor()
-     *      2. componentWillMount()
+     *      2. UNSAFE_componentWillMount()
      *      3. render()
      *      4. componentDidMount() =====> 常用
      *         一般在这个钩子中做一些初始化的事，例如：开启定时器，网络请求，订阅消息等
      *  2. 更新阶段：由组件内部的 this.setSate() 或者父组件 render 触发
      *      1. shouldComponentUpdate()
-     *      2. componentWillUpdate()
+     *      2. UNSAFE_componentWillUpdate()
      *      3. render() ====> 必须有的
      *      4. componentDidUpdate()
      *  3. 卸载组件：由 ReactDOM.unmountComponentAtNode() 触发
-     *      1. componentWillUnmount() ====> 常用
+     *      1. UNSAFE_componentWillUnmount() ====> 常用
      *         一般在这个钩子中做一些收尾工作，例如：关闭定时器，取消订阅消息等
       */
     class MyComponents extends React.Component {
@@ -64,19 +64,21 @@
         console.log("Count---forceUpdate");
         this.forceUpdate();
       }
-      
-      // 组件挂载之前
-      componentWillMount() {
-        console.log("Count---componentWillMount");
+
+      /*  Derived: 派生，衍生
+          从 props 得到一个衍生的状态 横跨了 挂载和更新的生命周期， 会使代码冗余，并使组件难以维护
+          若 state 的值在任何时候都取决于 props，那么可以使用 getDerivedStateFromProps */
+      static getDerivedStateFromProps(props, state) {
+        console.log("Count-getDerivedStateFromProps", props, state);
+        /* return { // 必须有返回值 null 或者 state Obj
+          count: props.count
+        } */
+        return null
       }
+
       // 组件挂载完毕调用
       componentDidMount() {
         console.log("Count---componentDidMount");
-      }
-
-      // 组件卸载之前调用
-      componentWillUnmount() {
-        console.log("count---componentWillUnmount");
       }
       
       // 组件是否允许被更新钩子 （控制组件更新的 “阀门”）
@@ -89,14 +91,15 @@
         return true
       }
 
-      // 组件将要更新的钩子
-      componentWillUpdate() {
-        console.log("Count---componentWillUpdate");
+      // 在更新之前获取快照
+      getSnapshotBeforeUpdate() {
+        console.log("Count---getSnapshotBeforeUpdate");
+        return "123" // 返回的 null 或者 快照值，此用法并不常见
       }
 
       // 组件更新完成
-      componentDidUpdate() {
-        console.log("Count---componentDidUpdate");
+      componentDidUpdate(prevProps, prevstate, snapshotValue) { // 更新之前的值 和 快照值
+        console.log("Count---componentDidUpdate", prevProps, prevstate, snapshotValue);
       }
 
       // 初始化时调用，状态更改时调用
@@ -112,92 +115,8 @@
         )
       }
     }
-
-    // 父组件
-    class Father extends React.Component{
-      constructor(props) {
-        console.log("Father---constructor");
-        super(props);
-        this.state = {
-          text: '默认文字'
-        }
-      }
-
-      changeValue = () => {
-        this.setState({
-          text: '更改之后的文字'
-        })
-      }
-
-      // 组件将要挂载的钩子
-      componentWillMount() {
-        console.log("Father---componentWillMount");
-      }
-
-      // 组件挂载完毕的钩子
-      componentDidMount() {
-        console.log("Father---componentDidMount"); // 子组件的 componentWillMount 先执行
-      }
-
-      // 组件将要更新的钩子
-      componentWillUpdate() {
-        console.log("Father-componentWillUpdate");
-      }
-
-      // 组件更新完毕的钩子
-      componentDidUpdate() {
-        /**
-         * 类似 冒泡事件
-          */
-        console.log("Father-componentDidUpdate"); // 子组件的 componentDidUpdate 执行完之后执行
-      }
-
-      render() {
-        return (
-          <div>
-            <h3>我是父组件组件</h3>
-            <button onClick={this.changeValue}>下一个值</button>
-            <Child text={this.state.text}></Child>
-          </div>
-        )
-      }
-    }
-
-    // 子组件
-    class Child extends React.Component{
-
-      // 组件将要挂载的钩子
-      componentWillMount() {
-        console.log("Child---componentWillMount");
-      }
-
-      // 组件将要接收到新属性钩子（第一次不执行，state 更新时执行）
-      componentWillReceiveProps(props) {
-        console.log("Child---componentWillReceiveProps", props);
-      }
-
-      // 组件将要更新的钩子
-      componentWillUpdate() {
-        console.log("Child-componentWillUpdate");
-      }
-
-      // 组件更新完毕的钩子
-      componentDidUpdate() {
-        console.log("Child-componentDidUpdate");
-      }
-
-      render() {
-        return (
-          <div>
-            <h3>我是子组件，接收的值为{this.props.text}</h3>  
-          </div>
-        )
-      }
-    }
-    // ReactDOM.render(<MyComponents />, document.getElementById('App'));
-
-
-    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  
+    ReactDOM.render(<MyComponents count={10} />, document.getElementById('App'));
   </script>
 </body>
 </html>
