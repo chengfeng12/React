@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/16.8.4/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/16.8.4/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/16.8.4/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/16.8.4/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+
+    class MyComponents extends React.Component {
+      
+      state = {
+        time: new Date()
+      }
+
+      componentDidMount() {
+        setInterval(() => {
+          this.setState({
+            time: new Date()
+          })
+        }, 1000)
+      }
+      /**
+       * 最小更新单位为 节点
+       * input 也属于没有更新，值没有清空
+        */
+      render() {
+        return (
+          <div>
+            <h2>这是一段文字。。。。。</h2>
+            <span>
+              { this.state.time.toTimeString() }
+              <input type="text" />
+            </span>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  </script>
+</body>
+</html>

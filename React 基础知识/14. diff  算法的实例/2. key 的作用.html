@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="App"></div>
+  
+  <!-- 引入 react 库 -->
+  <script src="../../js/16.8.4/react.development.js"></script>
+  <!-- 引入 react-dom 库，用于操作 dom -->
+  <script src="../../js/16.8.4/react-dom.development.js"></script>
+  <!-- 引入 babel 用于将 jsx 转换为 js -->
+  <script src="../../js/16.8.4/babel.min.js"></script>
+  <!-- 引入 prop-types 用于限制 props 的类型 -->
+  <script src="../../js/16.8.4/prop-types.js"></script>
+  <!-- 此处应为 text/babel -->
+  <script type="text/babel">
+
+    class MyComponents extends React.Component {
+
+      /**
+       * 经典面试题：
+       *    1). React/Vue 中的 key 有什么作用？（key 的内部原理是什么？）
+       *    2). 为什么遍历列表时，key 最好不要用 index ？
+       *    
+       *    1. 虚拟 DOM 中 key 的作用
+       *       1). 简单的说：key 是虚拟 DOM 对象的标识，在更新显示时 key 起着极其重要的作用。
+       *       2). 详细的说：当状态中的数据发生比阿努哈是， React 会根据 【新数据】 生成 【新的虚拟DOM】，
+       *           随后 React 进行 【新虚拟DOM】 与 【旧虚拟DOM】 的 diff 比较，比较规则如下：
+       *                a. 旧的虚拟 DOM 中找到了与新虚拟 DOM 中相同的 key：
+       *                     1. 若虚拟 DOM 中内容没有发生变化，则直接使用之前的真实 DOM。
+       *                     2. 若虚拟 DOM 中内容变了，则生成新的真实 DOM，随后替换掉页面中之前的真实 DOM。
+       * 
+       *                b. 旧虚拟 DOM 中未找到与新虚拟 DOM 相同的 key
+       *                     则根据数据创建新的真实 DOM，随后渲染到页面中。
+       * 
+       * 
+       *    2. 用 index 作为 key 可能引发的问题：
+       *          1. 若对数据进行:逆序添加、逆序删除等破坏顺序操作:
+       *                会产生没有必要的真实DOM更新==>界面效果没问题，但效率低。
+       *          2．如果结构中还包含输入类的DOM:
+       *                会产生错误DOM更新==>界面有问题。
+       *          3. 注意！ 如果不存在对数据的逆序添加、逆序删除等破坏顺序操作。
+       *                仅用于渲染列表用于展示，使用index作为key是没有问题的。
+       * 
+       *    3．开发中如何选择key? :
+       *          1. 最好使用每条数据的唯一标识作为key，比如id、手机号、身份证号、学号等唯一值。
+       *          2. 如果确定只是简单的展示数据,用index也是可以的。
+        */
+
+
+        /**
+         * 慢动作解释  index 作为 key 的结果
+         *      personList: [
+         *        {id: 1, name: '小王', age: 18},
+         *        {id: 2, name: '小李', age: 22},
+         *      ]
+         *      <li>index: 0 name: 小王 ------ age: 18</li>
+         *      <li>index: 1 name: 小李 ------ age: 22</li>
+         * 
+         *      更改之后的值  问题：
+         *                       1. 渲染增加，所有 真实 DOM 重新生成 
+         *                       2. 多层 DOM 嵌套，会导致内部为 更改的 DOM 值发生 “篡位”
+         *      personList: [
+         *        {id: 3, name: '小张', age: 15},
+         *        {id: 1, name: '小王', age: 18},
+         *        {id: 2, name: '小李', age: 22},
+         *      ]
+         *      <li key="0">index: 0 name: 小张 ------ age: 15</li>
+         *      <li key="1">index: 1 name: 小王 ------ age: 18</li>
+         *      <li key="2">index: 2 name: 小李 ------ age: 22</li>
+         * 
+         * -----------------------------------------------------------------------
+         * 
+         * 慢动作解释  id 作为 key 的结果
+         *      personList: [
+         *        {id: 1, name: '小王', age: 18},
+         *        {id: 2, name: '小李', age: 22},
+         *      ]
+         *      <li>index: 0 name: 小王 ------ age: 18</li>
+         *      <li>index: 1 name: 小李 ------ age: 22</li>
+         * 
+         *      更改之后的值  问题：
+         *                       1. 渲染增加，所有 真实 DOM 重新生成 
+         *                       2. 多层 DOM 嵌套，会导致内部为 更改的 DOM 值发生 “篡位”
+         *      personList: [
+         *        {id: 3, name: '小张', age: 15},
+         *        {id: 1, name: '小王', age: 18},
+         *        {id: 2, name: '小李', age: 22},
+         *      ]
+         *      <li key=" 新的值">id: 新的值 name: 小张 ------ age: 15</li>
+         *      <li key="1">id: 1 name: 小王 ------ age: 18</li>
+         *      <li key="2">id: 2 name: 小李 ------ age: 22</li>
+         * 
+          */
+      
+      state = {
+        personList: [
+          {id: 1, name: '小王', age: 18},
+          {id: 2, name: '小李', age: 22},
+        ]
+      }
+
+      add = () => {
+        const { personList } = this.state;
+        const p = {
+          id: new Date().getTime(), name: '小张', age: 15
+        }
+        this.setState({
+          personList: [
+            p,
+            ...personList
+          ]
+        })
+      }
+      
+      render() {
+        return (
+          <div>
+            <h2>key 值的问题?</h2>
+            <button onClick={this.add}>添加一个小张</button>
+            <ul>
+              <h2>index 作为 key 的唯一值</h2>
+              {
+                this.state.personList.map((item, index) => {
+                  return <li key={index}>
+                    <li>
+                      index: {index} name: {item.name} ------ age: {item.age}
+                      <input type="text" />
+                      
+                    </li>  
+                  </li>
+                })
+              }
+            </ul>
+
+            <hr />
+            <hr />
+
+            <ul>
+              <h2>id 作为 key 的唯一值</h2>
+              {
+                this.state.personList.map((item, index) => {
+                  return <li key={item.id}>
+                    <li>
+                      id: {item.id} name: {item.name} ------ age: {item.age}
+                      <input type="text" />
+                    </li>  
+                  </li>
+                })
+              }
+            </ul>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
+  </script>
+</body>
+</html>
