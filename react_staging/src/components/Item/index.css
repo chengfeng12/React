@@ -1,0 +1,20 @@
+.item-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #f5f5f5;
+    line-height: 25px;
+}
+.item-box .btn {
+    background-color: #e73737;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    padding: 0 10px;
+    line-height: 32px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: none;
+}
