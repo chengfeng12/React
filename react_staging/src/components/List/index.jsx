@@ -6,7 +6,7 @@ class List extends Component {
         return (
             <div className="title">
                 {
-                    this.props.list.map(item => <Item {...item}></Item>)
+                    this.props.list.map(item => <Item key={item.id} {...item} updateTodo={this.props.updateTodo}></Item>)
                 }
             </div>
         );

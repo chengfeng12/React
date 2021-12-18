@@ -6,7 +6,7 @@ class Footer extends Component {
             <div className="footer">
                <div className="lable">
                    <input type="checkbox" />
-                   已完成0/全部
+                   <span>已完成0/全部</span>
                </div>
                 <div className="btn">
                     清除已完成任务
