@@ -35,8 +35,21 @@ class TodoList extends Component {
         })
     }
 
+    uodateList = (check) => {
+        let { list } = this.state;
+        let newList = list.map((item) => {
+            return {...item, check: check}
+        });
+        this.setState({
+            list: newList
+        })
+    }
+
     checkAll = (check) => {
         let { list } = this.state;
+        console.log(list.map(item => {
+            return  { ...item, check: check }
+        }));
         this.setState({
             list: list.map(item => {
                 return  { ...item, check: check }
@@ -50,7 +63,7 @@ class TodoList extends Component {
             <div className="todo-list">
                 <Header addItem={this.addItem}></Header>
                 <List list={list} updateTodo={this.updateTodo}></List>
-                <Footer></Footer>
+                <Footer list={list} checkAll={this.checkAll}></Footer>
             </div>
         );
     }
