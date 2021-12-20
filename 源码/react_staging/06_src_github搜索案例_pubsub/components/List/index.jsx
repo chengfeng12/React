@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
-import './index.css'
+import './index.css';
 
 export default class List extends Component {
 

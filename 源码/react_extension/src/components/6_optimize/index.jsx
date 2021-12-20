@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import './index.css'
+import './index.css';
 
 export default class Parent extends PureComponent {
 

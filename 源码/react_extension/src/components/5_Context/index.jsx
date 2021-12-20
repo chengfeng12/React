@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './index.css'
+import './index.css';
 
 //创建Context对象
 const MyContext = React.createContext()

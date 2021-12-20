@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import './index.css';
-import Header from '../Header';
-import List from '../List';
-import Footer from '../Footer';
-
+import Header from './components/Header';
+import List from './components/List';
+import Footer from './components/Footer';
 class TodoList extends Component {
     state = {
         list: [
@@ -12,6 +11,7 @@ class TodoList extends Component {
             { id: 3, name: "学习", check: false},
         ]
     }
+    // 添加 todoList
     addItem = (item) => {
         let { list } = this.state;
         this.setState({
@@ -21,7 +21,7 @@ class TodoList extends Component {
             ]
         })
     }
-
+    // 更新 todoList 中某一个 check 的值
     updateTodo = (id, check) => {
         let { list } = this.state;
         let newList = list.map((item) => {
@@ -34,26 +34,29 @@ class TodoList extends Component {
             list: newList
         })
     }
-
-    uodateList = (check) => {
-        let { list } = this.state;
-        let newList = list.map((item) => {
-            return {...item, check: check}
-        });
-        this.setState({
-            list: newList
-        })
-    }
-
+    // 全选和全不选
     checkAll = (check) => {
         let { list } = this.state;
-        console.log(list.map(item => {
-            return  { ...item, check: check }
-        }));
         this.setState({
             list: list.map(item => {
                 return  { ...item, check: check }
             })
+        })
+    }
+    // 删除 todoList
+    removeItem = (id) => {
+        let { list } = this.state;
+        const newList = list.filter((item) => item.id !== id);
+        this.setState({
+            list: newList
+        })
+    }
+    // 删除选中的
+    handleRemoveCheck = () => {
+        let { list } = this.state;
+        const newList = list.filter((item) => !item.check);
+        this.setState({
+            list: newList
         })
     }
 
@@ -62,8 +65,8 @@ class TodoList extends Component {
         return (
             <div className="todo-list">
                 <Header addItem={this.addItem}></Header>
-                <List list={list} updateTodo={this.updateTodo}></List>
-                <Footer list={list} checkAll={this.checkAll}></Footer>
+                <List list={list} updateTodo={this.updateTodo} removeItem={this.removeItem}></List>
+                <Footer list={list} checkAll={this.checkAll} handleRemoveCheck={this.handleRemoveCheck}></Footer>
             </div>
         );
     }

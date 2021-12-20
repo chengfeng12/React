@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import './index.css'
+import './index.css';
+import PropTypes from "prop-types";
 class Header extends Component {
+    static propTypes = {
+        addItem: PropTypes.func.isRequired 
+    }
+
     keyDown = (event) => {
-        console.log(event.target)
         if (event.keyCode !== 13) return
+        if (!event.target.value) alert("值不能为空");
         this.props.addItem({
             id: new Date().getTime(),
             name: event.target.value,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './index.css'
+import './index.css';
 import C from '../1_setState'
 
 export default class Parent extends Component {
