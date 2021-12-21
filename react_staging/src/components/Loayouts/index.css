@@ -13,6 +13,7 @@
   flex-wrap: wrap;
   border: 1px solid #e5e5e5;
   margin-right: 20px;
+  border-radius: 5px;
 }
 .layout .link-item {
   display: flex;
@@ -25,13 +26,14 @@
   border-bottom: 1px solid #e5e5e5;
 }
 .layout .link-item:hover {
-  background-color: aqua;
+  background-color: #eee;
 }
 .layout .link-item:last-child {
   border: none;
 }
 .layout .current-link-item {
-  background-color: aqua;
+  background-color: #eee;
+  color: #fff;
 }
 
 .layout .route-view {

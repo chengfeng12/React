@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../Header"; // 一般组件
 import About from "../../pages/About"; // 路由组件
 import Home from "../../pages/Home";
-import { Route, Link, Routes, BrowserRouter } from "react-router-dom";
+import { Route, NavLink, Routes, BrowserRouter } from "react-router-dom";
 import "./index.css";
 
 export default class Loayouts extends Component {
@@ -49,8 +49,8 @@ export default class Loayouts extends Component {
           <div className="view">
             <div className="tab-list">
               {/* 在 React 中靠路由链接实现切换组件---编写路由组件链接 */}
-              <Link className="link-item" to="/about">About</Link>
-              <Link className="link-item" to="/home">Home</Link>
+              <NavLink activeClassName="current-link-item" className="link-item" to="/about">About</NavLink>
+              <NavLink activeClassName="current-link-item" className="link-item" to="/home">Home</NavLink>
             </div>
             <div className="route-view">
               <Routes>
