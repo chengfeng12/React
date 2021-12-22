@@ -31,9 +31,8 @@
 .layout .link-item:last-child {
   border: none;
 }
-.layout .current-link-item {
+.layout .link-item.active {
   background-color: #eee;
-  color: #fff;
 }
 
 .layout .route-view {

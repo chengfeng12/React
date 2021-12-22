@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import Header from "../Header"; // 一般组件
-import About from "../../pages/About"; // 路由组件
+// 一般组件
+import Header from "../Header";
+import MyNavLink from "../MyNavLink";
+// 路由组件
+import About from "../../pages/About";
 import Home from "../../pages/Home";
-import { Route, NavLink, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./index.css";
 
 export default class Loayouts extends Component {
@@ -46,38 +49,37 @@ export default class Loayouts extends Component {
     return (
       <div className="layout">
         <Header></Header>
-          <div className="view">
-            <div className="tab-list">
-              {/* 在 React 中靠路由链接实现切换组件---编写路由组件链接 */}
-              <NavLink activeClassName="current-link-item" className="link-item" to="/about">About</NavLink>
-              <NavLink activeClassName="current-link-item" className="link-item" to="/home">Home</NavLink>
-            </div>
-            <div className="route-view">
-              <Routes>
-                {/**
-                 * 之前的版本是 component 17 版本之后改为 element ，用法上也发生了改变
-                 *     之前 component={About}
-                 *     现在 element={<div>
-                              {
-                                <About />
-                              }
-                            </div>} 需要 Routes 标签包裹
-                 */}
-
-                 {/* 注册路由 */}
-                <Route path="/about" element={<div>
-                  {
-                    <About />
-                  }
-                </div>} />
-                <Route path="/home" element={<div>
-                  {
-                    <Home />
-                  }
-                </div>} />
-              </Routes>
-            </div>
+        <div className="view">
+          <div className="tab-list">
+            <MyNavLink to="/home">Home</MyNavLink>
+            <MyNavLink to="/about">About</MyNavLink>
           </div>
+          <div className="route-view">
+            <Routes>
+              {/**
+               * 之前的版本是 component 17 版本之后改为 element ，用法上也发生了改变
+               *     之前 component={About}
+               *     现在 element={<div>
+                            {
+                              <About />
+                            }
+                          </div>} 需要 Routes 标签包裹
+                */}
+
+                {/* 注册路由 */}
+              <Route path="/about" element={<div>
+                {
+                  <About />
+                }
+              </div>} />
+              <Route path="/home" element={<div>
+                {
+                  <Home />
+                }
+              </div>} />
+            </Routes>
+          </div>
+        </div>
       </div>
     );
   }
