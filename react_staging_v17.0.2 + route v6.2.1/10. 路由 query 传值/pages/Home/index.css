@@ -1,0 +1,7 @@
+.home .link-item {
+  width: 120px !important;
+  border: 1px solid #e5e5e5 !important;
+}
+.home .link-item:last-child {
+  border-left: none !important;
+}
