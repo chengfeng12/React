@@ -8,4 +8,5 @@
 dist.rar
 *.zip
 *.lock
+*.log
 /node_modules

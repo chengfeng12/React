@@ -1,32 +1,43 @@
 import React, { Component } from 'react';
+import store from '../../redux/store';
+import { incrementCountAction, decrementCountAction, asyncIncrementCountAction } from "../../redux/count_action";
+
 export default class Count extends Component {
+
+  /* // 当 redux 中 store 的值发生变化时，触发并调用 render 函数 也可在 入口文件 中全局写入
+  componentDidMount() {
+    store.subscribe(() => {
+      this.setState({})
+    })
+  } */
 
   increment = () => {
     const { value } = this.selectRef;
-    this.props.increment(value * 1);
+    store.dispatch(incrementCountAction(value * 1));
   }
 
   decrement = () => {
     const { value } = this.selectRef;
-    this.props.decrement(value * 1);
+    store.dispatch(decrementCountAction(value * 1));
   }
   incrementIfOdd = () => {
     const { value } = this.selectRef;
-    if (this.props.count % 2 !== 0) {
-      this.props.increment(value * 1);
+    const count = store.getState();
+    if (count % 2 !== 0) {
+      store.dispatch(incrementCountAction(value * 1));
     }
   }
   incrementAsync = () => {
     const { value } = this.selectRef;
     // setTimeout(() => {
-      this.props.increment(value * 1, 500);
+      asyncIncrementCountAction(value * 1, 500);
     // }, 500)
   }
 
   render() {
     return (
       <div>
-        <h2>结果为：{ this.props.count }</h2>
+        <h2>结果为：{ store.getState() }</h2>
         <select ref={ current => this.selectRef = current}>
           <option value="1">1</option>
           <option value="2">2</option>
