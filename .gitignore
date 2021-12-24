@@ -7,3 +7,5 @@
 *.sln
 dist.rar
 *.zip
+*.lock
+/node_modules
