@@ -19,7 +19,7 @@ export default class Count extends Component {
   incrementAsync = () => {
     const { value } = this.selectRef;
     // setTimeout(() => {
-      this.props.increment(value * 1, 500);
+      this.props.asyncIncrement(value * 1, 500);
     // }, 500)
   }
 

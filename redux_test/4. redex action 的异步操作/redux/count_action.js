@@ -19,7 +19,7 @@ export const asyncIncrementCountAction = (data, time) => {
     // 没有进来
 		setTimeout(()=>{
       // 没有进来
-			dispatch(incrementCountAction(data))
+			dispatch(incrementCountAction(data, time))
 		}, time)
 	}
 }

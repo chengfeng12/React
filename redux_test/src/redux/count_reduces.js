@@ -7,6 +7,7 @@ export default function countReduces(previousState=initCount, action) {
   const { type, data } = action;
   switch (type) {
     case INCREMENT:
+      console.log(previousState + data)
       return previousState + data
     case DECREMENT:
         return previousState - data

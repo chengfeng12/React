@@ -12,12 +12,9 @@ const mapStateToProps = store => ({count: store})
 
 const mapDispatchToProps = dispatch => {
   return {
-    increment: number => {
-      console.log(number, "number");
-      incrementCountAction(number)
-    },
-    decrement: number => decrementCountAction(number),
-    asyncIncrement: (number, time) => asyncIncrementCountAction(number, time),
+    increment: number => dispatch(incrementCountAction(number)),
+    decrement: number => dispatch(decrementCountAction(number)),
+    asyncIncrement: (number, time) => dispatch(asyncIncrementCountAction(number, time)),
   }
 }
 
