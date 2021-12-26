@@ -1,5 +1,5 @@
 // 引入常量
-import { INCREMENT, DECREMENT } from './constant';
+import { INCREMENT, DECREMENT } from '../constant';
 /* 
 	该文件专门为Count组件生成action对象
 */
