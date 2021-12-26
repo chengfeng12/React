@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-export default class Count extends Component {
+import { connect } from "react-redux";
+// 引入 action 的方法
+import {
+  incrementCountAction,
+  decrementCountAction,
+  asyncIncrementCountAction
+} from "../../redux/count_action";
+
+// 引入 UI 组件
+class CountUi extends Component {
 
   increment = () => {
     const { value } = this.selectRef;
@@ -40,3 +49,14 @@ export default class Count extends Component {
     )
   }
 }
+
+export default connect(
+  // mapStateToProps
+  state=> ({count: state}),
+  // mapDispatchToProps 一般用法
+  {
+    increment: incrementCountAction,
+    decrement: decrementCountAction,
+    asyncIncrement: asyncIncrementCountAction,
+  }
+)(CountUi);

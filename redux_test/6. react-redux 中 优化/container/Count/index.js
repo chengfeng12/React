@@ -9,8 +9,8 @@ import {
 } from "../../redux/count_action"
 
 export default connect(
-  // mapStateToProps
-  store => ({count: store}),
+  // mapStateToProps 映射状态
+  state=> ({count: state}),
   // mapDispatchToProps 一般用法
   /* dispatch => {
     return {

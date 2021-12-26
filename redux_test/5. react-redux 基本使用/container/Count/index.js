@@ -8,7 +8,7 @@ import {
   asyncIncrementCountAction
 } from "../../redux/count_action"
 
-const mapStateToProps = store => ({count: store})
+const mapStateToProps = state => ({count: state})
 
 const mapDispatchToProps = dispatch => {
   return {
