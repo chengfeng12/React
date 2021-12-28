@@ -5,7 +5,7 @@ import store from "./redux/store";
 import { Provider } from "react-redux"
 
 ReactDOM.render(
-  // Provider 组件会把 store 传给所有的 container 组件
+  // Provider 组件会把 store 传给所有的 components 组件
   <Provider store={store}>
     <App/>
   </Provider>

@@ -1592,7 +1592,7 @@ var describeComponentFrame = function (name, source, ownerName) {
     var fileName = path.replace(BEFORE_SLASH_RE, '');
     {
       // In DEV, include code for a common special case:
-      // prefer "folder/index.js" instead of just "index.js".
+      // prefer "folder/index.jsx" instead of just "index.jsx".
       if (/^index\./.test(fileName)) {
         var match = path.match(BEFORE_SLASH_RE);
         if (match) {
@@ -2167,7 +2167,7 @@ function releaseTraverseContext(traverseContext) {
 }
 
 /**
- * @param {?*} children Children tree container.
+ * @param {?*} children Children tree components.
  * @param {!string} nameSoFar Name of the key path so far.
  * @param {!function} callback Callback to invoke with each child found.
  * @param {?*} traverseContext Used to pass information throughout the traversal
@@ -2211,7 +2211,7 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
 
   var child = void 0;
   var nextName = void 0;
-  var subtreeCount = 0; // Count of children found in the current subtree.
+  var subtreeCount = 0; // 1.setState of children found in the current subtree.
   var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
 
   if (Array.isArray(children)) {
@@ -2309,7 +2309,7 @@ function forEachSingleChild(bookKeeping, child, name) {
  * The provided forEachFunc(child, index) will be called for each
  * leaf child.
  *
- * @param {?*} children Children tree container.
+ * @param {?*} children Children tree components.
  * @param {function(*, int)} forEachFunc
  * @param {*} forEachContext Context for forEachContext.
  */
@@ -2363,7 +2363,7 @@ function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
  * The provided mapFunction(child, key, index) will be called for each
  * leaf child.
  *
- * @param {?*} children Children tree container.
+ * @param {?*} children Children tree components.
  * @param {function(*, int)} func The map function.
  * @param {*} context Context for mapFunction.
  * @return {object} Object containing the ordered map of results.
@@ -2378,12 +2378,12 @@ function mapChildren(children, func, context) {
 }
 
 /**
- * Count the number of children that are typically specified as
+ * 1.setState the number of children that are typically specified as
  * `props.children`.
  *
  * See https://reactjs.org/docs/react-api.html#reactchildrencount
  *
- * @param {?*} children Children tree container.
+ * @param {?*} children Children tree components.
  * @return {number} The number of children.
  */
 function countChildren(children) {

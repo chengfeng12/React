@@ -107,11 +107,11 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* binding *
 
 // UNUSED EXPORTS: alphaSortKeys, utfDecodeString, getSavedComponentFilters, saveComponentFilters, getAppendComponentStack, setAppendComponentStack, getBreakOnConsoleErrors, setBreakOnConsoleErrors, separateDisplayNameAndHOCs, shallowDiffers
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lru-cache/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lru-cache/index.jsx
 var lru_cache = __webpack_require__(15);
 var lru_cache_default = /*#__PURE__*/__webpack_require__.n(lru_cache);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-is/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-is/index.jsx
 var react_is = __webpack_require__(6);
 
 // CONCATENATED MODULE: ../shared/ReactSymbols.js
@@ -5036,7 +5036,7 @@ function attach(hook, rendererID, renderer, global) {
       if (a.alternate !== b) {
         throw Error("Return fibers should always be each others' alternates. " + 'This error is likely caused by a bug in React. Please file an issue.');
       }
-    } // If the root is not a host container, we're in a disconnected tree. I.e.
+    } // If the root is not a host components, we're in a disconnected tree. I.e.
     // unmounted.
 
 
@@ -7786,7 +7786,7 @@ __webpack_require__.d(__webpack_exports__, "default", function() { return /* bin
 // EXTERNAL MODULE: ../react-devtools-shared/src/events.js
 var events = __webpack_require__(10);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lodash.throttle/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lodash.throttle/index.jsx
 var lodash_throttle = __webpack_require__(11);
 var lodash_throttle_default = /*#__PURE__*/__webpack_require__.n(lodash_throttle);
 
@@ -7796,7 +7796,7 @@ var constants = __webpack_require__(3);
 // EXTERNAL MODULE: ../react-devtools-shared/src/storage.js
 var storage = __webpack_require__(4);
 
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/memoize-one/esm/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/memoize-one/esm/index.jsx
 var simpleIsEqual = function simpleIsEqual(a, b) {
   return a === b;
 };
@@ -7830,7 +7830,7 @@ var simpleIsEqual = function simpleIsEqual(a, b) {
 
   return result;
 });
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/object-assign/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/object-assign/index.jsx
 var object_assign = __webpack_require__(7);
 var object_assign_default = /*#__PURE__*/__webpack_require__.n(object_assign);
 
@@ -8282,7 +8282,7 @@ function showOverlay(elements, componentName, hideAfterTimeout) {
     timeoutID = setTimeout(hideOverlay, SHOW_DURATION);
   }
 }
-// CONCATENATED MODULE: ../react-devtools-shared/src/backend/views/Highlighter/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/src/backend/views/Highlighter/index.jsx
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -8538,7 +8538,7 @@ function initialize() {
   const root = window.document.documentElement;
   root.insertBefore(canvas, root.firstChild);
 }
-// CONCATENATED MODULE: ../react-devtools-shared/src/backend/views/TraceUpdates/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/src/backend/views/TraceUpdates/index.jsx
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -13409,7 +13409,7 @@ function attach(hook, rendererID, renderer, global) {
     updateComponentFilters
   };
 }
-// CONCATENATED MODULE: ../react-devtools-shared/src/backend/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/src/backend/index.jsx
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *

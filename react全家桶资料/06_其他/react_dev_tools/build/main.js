@@ -183,11 +183,11 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* binding *
 
 // UNUSED EXPORTS: alphaSortKeys, printOperationsArray, setAppendComponentStack, setBreakOnConsoleErrors
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lru-cache/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lru-cache/index.jsx
 var lru_cache = __webpack_require__(34);
 var lru_cache_default = /*#__PURE__*/__webpack_require__.n(lru_cache);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-is/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-is/index.jsx
 var react_is = __webpack_require__(10);
 
 // CONCATENATED MODULE: ../shared/ReactSymbols.js
@@ -18775,11 +18775,11 @@ exports.push([module.i, ":root {\n  /**\n   * IMPORTANT: When new theme variable
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react/index.jsx
 var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-dom/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-dom/index.jsx
 var react_dom = __webpack_require__(11);
 
 // CONCATENATED MODULE: ../react-devtools-shared/src/events.js
@@ -19055,7 +19055,7 @@ var utils = __webpack_require__(2);
 // EXTERNAL MODULE: ../react-devtools-shared/src/storage.js
 var storage = __webpack_require__(7);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/json5/dist/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/json5/dist/index.jsx
 var dist = __webpack_require__(78);
 var dist_default = /*#__PURE__*/__webpack_require__.n(dist);
 
@@ -21432,7 +21432,7 @@ function _assertThisInitialized(self) {
 
   return self;
 }
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/memoize-one/esm/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/memoize-one/esm/index.jsx
 var simpleIsEqual = function simpleIsEqual(a, b) {
   return a === b;
 };
@@ -23406,10 +23406,10 @@ function shouldComponentUpdate(nextProps, nextState) {
 }
 
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/scheduler/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/scheduler/index.jsx
 var scheduler = __webpack_require__(52);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/escape-string-regexp/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/escape-string-regexp/index.jsx
 var escape_string_regexp = __webpack_require__(79);
 var escape_string_regexp_default = /*#__PURE__*/__webpack_require__.n(escape_string_regexp);
 
@@ -24323,7 +24323,7 @@ function getNearestResultIndex(store, searchResults, selectedElementIndex) {
 }
 
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lodash.throttle/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lodash.throttle/index.jsx
 var lodash_throttle = __webpack_require__(80);
 var lodash_throttle_default = /*#__PURE__*/__webpack_require__.n(lodash_throttle);
 
@@ -25361,7 +25361,7 @@ function DisplayName({
 
   return children;
 }
-// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/auto-id/es/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/auto-id/es/index.jsx
  // Could use UUID but if we hit 9,007,199,254,740,991 unique components over
 // the lifetime of the app before it gets reloaded, I mean ... come on.
 // I don't even know what xillion that is.
@@ -25384,7 +25384,7 @@ var es_useId = function useId() {
   }, []);
   return id;
 };
-// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/utils/es/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/utils/es/index.jsx
 var checkedPkgs = {};
 
 var checkStyles = function checkStyles() {};
@@ -25414,10 +25414,10 @@ var assignRef = function assignRef(ref, value) {
     }
   }
 };
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/prop-types/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/prop-types/index.jsx
 var prop_types = __webpack_require__(26);
 
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/component-component/es/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/component-component/es/index.jsx
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -25582,7 +25582,7 @@ var _initialiseProps = function _initialiseProps() {
 
  false ? undefined : void 0;
 /* harmony default export */ var es = (es_Component);
-// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/portal/es/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/portal/es/index.jsx
 
 
 
@@ -25630,7 +25630,7 @@ var es_Portal = function Portal(_ref) {
 };
 
 /* harmony default export */ var portal_es = (es_Portal);
-// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/visually-hidden/es/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/visually-hidden/es/index.jsx
 var es_extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -25685,7 +25685,7 @@ var t = ["width", "height", "top", "right", "bottom", "left"],
   };
 });
 ;
-// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/rect/es/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/rect/es/index.jsx
 var rect_es_extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -25800,7 +25800,7 @@ function useRect(nodeRef) {
   return rect;
 }
 /* harmony default export */ var rect_es = (es_Rect);
-// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/tooltip/es/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/node_modules/@reach/tooltip/es/index.jsx
 var tooltip_es_extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -26398,7 +26398,7 @@ function InspectHostNodesToggle() {
     type: "search"
   }));
 }
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/node_modules/@reach/portal/es/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/node_modules/@reach/portal/es/index.jsx
 
 
 
@@ -26470,7 +26470,7 @@ var index_m_t = ["width", "height", "top", "right", "bottom", "left"],
   };
 });
 ;
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/node_modules/@reach/rect/es/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/node_modules/@reach/rect/es/index.jsx
 var _reach_rect_es_extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -26585,7 +26585,7 @@ function es_useRect(nodeRef) {
   return rect;
 }
 /* harmony default export */ var _reach_rect_es = (rect_es_Rect);
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/window-size/es/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/window-size/es/index.jsx
 
 
 
@@ -26635,7 +26635,7 @@ var es_WindowSize = function WindowSize(_ref3) {
 
  false ? undefined : void 0;
 /* harmony default export */ var window_size_es = (es_WindowSize);
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/node_modules/@reach/utils/es/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/node_modules/@reach/utils/es/index.jsx
 var es_checkedPkgs = {};
 
 var es_checkStyles = function checkStyles() {};
@@ -26665,7 +26665,7 @@ var es_assignRef = function assignRef(ref, value) {
     }
   }
 };
-// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/es/index.js
+// CONCATENATED MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/@reach/menu-button/es/index.jsx
 var menu_button_es_extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -29354,7 +29354,7 @@ function CannotSuspendWarningMessage() {
   if (areSuspenseElementsHidden) {
     return /*#__PURE__*/react["createElement"]("div", null, "Suspended state cannot be toggled while Suspense components are hidden. Disable the filter and try again.");
   } else {
-    return /*#__PURE__*/react["createElement"]("div", null, "The selected element is not within a Suspense container. Suspending it would cause an error.");
+    return /*#__PURE__*/react["createElement"]("div", null, "The selected element is not within a Suspense components. Suspending it would cause an error.");
   }
 }
 // EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/clipboard-js/clipboard.js
@@ -31733,7 +31733,7 @@ function Field({
     value: value
   });
 }
-// CONCATENATED MODULE: ../react-devtools-shared/src/devtools/views/Components/NativeStyleEditor/index.js
+// CONCATENATED MODULE: ../react-devtools-shared/src/devtools/views/Components/NativeStyleEditor/index.jsx
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -31925,7 +31925,7 @@ function InspectedElementView_InspectedElementView({
 function formatSourceForDisplay(fileName, lineNumber) {
   const BEFORE_SLASH_RE = /^(.*)[\\\/]/;
   let nameOnly = fileName.replace(BEFORE_SLASH_RE, ''); // In DEV, include code for a common special case:
-  // prefer "folder/index.js" instead of just "index.js".
+  // prefer "folder/index.jsx" instead of just "index.jsx".
 
   if (/^index\./.test(nameOnly)) {
     const match = fileName.match(BEFORE_SLASH_RE);
@@ -33903,12 +33903,12 @@ function getTooltipPosition(element, mousePosition) {
     left,
     top
   };
-} // method used to find the current mouse position inside the container
+} // method used to find the current mouse position inside the components
 
 
 function getMousePosition(relativeContainer, mouseEvent) {
   if (relativeContainer !== null) {
-    // Position within the nearest position:relative container.
+    // Position within the nearest position:relative components.
     let targetContainer = relativeContainer;
 
     while (targetContainer.parentElement != null) {

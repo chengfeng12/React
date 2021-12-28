@@ -4461,7 +4461,7 @@
           throw Error( "Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue." );
         }
       }
-    } // If the root is not a host container, we're in a disconnected tree. I.e.
+    } // If the root is not a host components, we're in a disconnected tree. I.e.
     // unmounted.
 
 
@@ -4799,7 +4799,7 @@
 
         queuedEvent.blockedOn = nextBlockedOn;
         return false;
-      } // This target container was successfully dispatched. Try the next.
+      } // This target components was successfully dispatched. Try the next.
 
 
       targetContainers.shift();
@@ -4843,7 +4843,7 @@
           // We're still blocked. Try again later.
           nextDiscreteEvent.blockedOn = nextBlockedOn;
           break;
-        } // This target container was successfully dispatched. Try the next.
+        } // This target components was successfully dispatched. Try the next.
 
 
         targetContainers.shift();
@@ -5861,7 +5861,7 @@
       lanes &= ~lane;
     }
   }
-  var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback; // Count leading zeros. Only used on lanes, so assume input is an integer.
+  var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback; // 1.setState leading zeros. Only used on lanes, so assume input is an integer.
   // Based on:
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32
 
@@ -7525,7 +7525,7 @@
     return node;
   }
   /**
-   * Get the next sibling within a container. This will walk up the
+   * Get the next sibling within a components. This will walk up the
    * DOM if a node's siblings have been exhausted.
    *
    * @param {DOMElement|DOMTextNode} node
@@ -8261,7 +8261,7 @@
   } // List of events that need to be individually attached to media elements.
 
 
-  var mediaEventTypes = ['abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'encrypted', 'ended', 'error', 'loadeddata', 'loadedmetadata', 'loadstart', 'pause', 'play', 'playing', 'progress', 'ratechange', 'seeked', 'seeking', 'stalled', 'suspend', 'timeupdate', 'volumechange', 'waiting']; // We should not delegate these events to the container, but rather
+  var mediaEventTypes = ['abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'encrypted', 'ended', 'error', 'loadeddata', 'loadedmetadata', 'loadstart', 'pause', 'play', 'playing', 'progress', 'ratechange', 'seeked', 'seeking', 'stalled', 'suspend', 'timeupdate', 'volumechange', 'waiting']; // We should not delegate these events to the components, but rather
   // set them on the actual target element itself. This is primarily
   // because these events do not consistently bubble in the DOM.
 
@@ -8344,7 +8344,7 @@
     {
       if (rootContainerElement[listeningMarker]) {
         // Performance optimization: don't iterate through events
-        // for the same portal container or root node more than once.
+        // for the same portal components or root node more than once.
         // TODO: once we remove the flag, we may be able to also
         // remove some of the bookkeeping maps used for laziness.
         return;
@@ -8369,7 +8369,7 @@
     if (domEventName === 'selectionchange' && rootContainerElement.nodeType !== DOCUMENT_NODE) {
       target = rootContainerElement.ownerDocument;
     } // If the event can be delegated (or is capture phase), we can
-    // register it to the root container. Otherwise, we should
+    // register it to the root components. Otherwise, we should
     // register the event to the target element and mark it as
     // a non-delegated event.
 
@@ -8982,7 +8982,7 @@
   }
 
   function createElement(type, props, rootContainerElement, parentNamespace) {
-    var isCustomComponentTag; // We create tags in the namespace of their parent container, except HTML
+    var isCustomComponentTag; // We create tags in the namespace of their parent components, except HTML
     // tags get no namespace.
 
     var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
@@ -10299,7 +10299,7 @@
     } else {
       parentNode = container;
       parentNode.appendChild(child);
-    } // This container might be used for a portal.
+    } // This components might be used for a portal.
     // If something inside a portal is clicked, that click should bubble
     // through the React tree. However, on Mobile Safari the click would
     // never bubble through the *DOM* tree unless an ancestor with onclick
@@ -10617,14 +10617,14 @@
     var parentNode = targetNode.parentNode;
 
     while (parentNode) {
-      // We'll check if this is a container root that could include
+      // We'll check if this is a components root that could include
       // React nodes in the future. We need to check this first because
-      // if we're a child of a dehydrated container, we need to first
-      // find that inner container before moving on to finding the parent
+      // if we're a child of a dehydrated components, we need to first
+      // find that inner components before moving on to finding the parent
       // instance. Note that we don't check this field on  the targetNode
-      // itself because the fibers are conceptually between the container
-      // node and the first child. It isn't surrounding the container node.
-      // If it's not a container, we check if it's an instance.
+      // itself because the fibers are conceptually between the components
+      // node and the first child. It isn't surrounding the components node.
+      // If it's not a components, we check if it's an instance.
       targetInst = parentNode[internalContainerInstanceKey] || parentNode[internalInstanceKey];
 
       if (targetInst) {
@@ -19439,10 +19439,10 @@
               // the commit side-effects on the root.
               markUpdate(workInProgress);
             } else if (!fiberRoot.hydrate) {
-              // Schedule an effect to clear this container at the start of the next commit.
-              // This handles the case of React rendering into a container with previous children.
+              // Schedule an effect to clear this components at the start of the next commit.
+              // This handles the case of React rendering into a components with previous children.
               // It's also safe to do for updates too, because current.child would only be null
-              // if the previous render was null (so the the container would already be empty).
+              // if the previous render was null (so the the components would already be empty).
               workInProgress.flags |= Snapshot;
             }
           }
@@ -23276,7 +23276,7 @@
     }
 
     if (remainingLanes === SyncLane) {
-      // Count the number of times the root synchronously re-renders without
+      // 1.setState the number of times the root synchronously re-renders without
       // finishing. If there are too many, it indicates an infinite update loop.
       if (root === rootWithNestedUpdates) {
         nestedUpdateCount++;
@@ -25880,7 +25880,7 @@
 
         if (hostInstance) {
           if (hostInstance.parentNode !== container) {
-            error('render(...): It looks like the React-rendered content of the ' + 'root container was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + "root.unmount() to empty a root's container.");
+            error('render(...): It looks like the React-rendered content of the ' + 'root components was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + "root.unmount() to empty a root's components.");
           }
         }
       }
@@ -25944,7 +25944,7 @@
 
         if (hostInstance) {
           if (hostInstance.parentNode !== container) {
-            error('render(...): It looks like the React-rendered content of this ' + 'container was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + 'ReactDOM.unmountComponentAtNode to empty a container.');
+            error('render(...): It looks like the React-rendered content of this ' + 'components was removed without using React. This is not ' + 'supported and will cause errors. Instead, call ' + 'ReactDOM.unmountComponentAtNode to empty a components.');
           }
         }
       }
@@ -25958,7 +25958,7 @@
       }
 
       if (container.nodeType === ELEMENT_NODE && container.tagName && container.tagName.toUpperCase() === 'BODY') {
-        error('render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.');
+        error('render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a components element created ' + 'for your app.');
       }
     };
   }
@@ -26100,7 +26100,7 @@
   function hydrate(element, container, callback) {
     if (!isValidContainer(container)) {
       {
-        throw Error( "Target container is not a DOM element." );
+        throw Error( "Target components is not a DOM element." );
       }
     }
 
@@ -26108,7 +26108,7 @@
       var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
 
       if (isModernRoot) {
-        error('You are calling ReactDOM.hydrate() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call createRoot(container, {hydrate: true}).render(element)?');
+        error('You are calling ReactDOM.hydrate() on a components that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call createRoot(components, {hydrate: true}).render(element)?');
       }
     } // TODO: throw or warn if we couldn't hydrate?
 
@@ -26118,7 +26118,7 @@
   function render(element, container, callback) {
     if (!isValidContainer(container)) {
       {
-        throw Error( "Target container is not a DOM element." );
+        throw Error( "Target components is not a DOM element." );
       }
     }
 
@@ -26126,7 +26126,7 @@
       var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
 
       if (isModernRoot) {
-        error('You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call root.render(element)?');
+        error('You are calling ReactDOM.render() on a components that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call root.render(element)?');
       }
     }
 
@@ -26135,7 +26135,7 @@
   function unstable_renderSubtreeIntoContainer(parentComponent, element, containerNode, callback) {
     if (!isValidContainer(containerNode)) {
       {
-        throw Error( "Target container is not a DOM element." );
+        throw Error( "Target components is not a DOM element." );
       }
     }
 
@@ -26150,7 +26150,7 @@
   function unmountComponentAtNode(container) {
     if (!isValidContainer(container)) {
       {
-        throw Error( "unmountComponentAtNode(...): Target container is not a DOM element." );
+        throw Error( "unmountComponentAtNode(...): Target components is not a DOM element." );
       }
     }
 
@@ -26158,7 +26158,7 @@
       var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
 
       if (isModernRoot) {
-        error('You are calling ReactDOM.unmountComponentAtNode() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. Did you mean to call root.unmount()?');
+        error('You are calling ReactDOM.unmountComponentAtNode() on a components that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. Did you mean to call root.unmount()?');
       }
     }
 
@@ -26175,7 +26175,7 @@
 
       unbatchedUpdates(function () {
         legacyRenderSubtreeIntoContainer(null, null, container, false, function () {
-          // $FlowFixMe This should probably use `delete container._reactRootContainer`
+          // $FlowFixMe This should probably use `delete components._reactRootContainer`
           container._reactRootContainer = null;
           unmarkContainerAsRoot(container);
         });
@@ -26187,12 +26187,12 @@
       {
         var _rootEl = getReactRootElementInContainer(container);
 
-        var hasNonRootReactChild = !!(_rootEl && getInstanceFromNode(_rootEl)); // Check if the container itself is a React root node.
+        var hasNonRootReactChild = !!(_rootEl && getInstanceFromNode(_rootEl)); // Check if the components itself is a React root node.
 
         var isContainerReactRoot = container.nodeType === ELEMENT_NODE && isValidContainer(container.parentNode) && !!container.parentNode._reactRootContainer;
 
         if (hasNonRootReactChild) {
-          error("unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.');
+          error("unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level components. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its components.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.');
         }
       }
 
@@ -26222,7 +26222,7 @@
 
     if (!isValidContainer(container)) {
       {
-        throw Error( "Target container is not a DOM element." );
+        throw Error( "Target components is not a DOM element." );
       }
     } // TODO: pass ReactDOM portal implementation as third argument
     // $FlowFixMe The Flow type is opaque but there's no way to actually create it.

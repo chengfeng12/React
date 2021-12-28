@@ -544,11 +544,11 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* binding *
 
 // UNUSED EXPORTS: alphaSortKeys, printOperationsArray, setAppendComponentStack, setBreakOnConsoleErrors
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lru-cache/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/node_modules/lru-cache/index.jsx
 var lru_cache = __webpack_require__(34);
 var lru_cache_default = /*#__PURE__*/__webpack_require__.n(lru_cache);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-is/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-is/index.jsx
 var react_is = __webpack_require__(10);
 
 // CONCATENATED MODULE: ../shared/ReactSymbols.js
@@ -4100,7 +4100,7 @@ function serializeToString(data) {
 // EXTERNAL MODULE: ../react-devtools-shared/src/constants.js
 var constants = __webpack_require__(3);
 
-// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-debug-tools/index.js
+// EXTERNAL MODULE: /Users/bvaughn/Documents/git/react.alt2/build/node_modules/react-debug-tools/index.jsx
 var react_debug_tools = __webpack_require__(51);
 
 // EXTERNAL MODULE: ../react-devtools-shared/src/backend/console.js + 3 modules
@@ -6116,7 +6116,7 @@ function attach(hook, rendererID, renderer, global) {
       if (a.alternate !== b) {
         throw Error("Return fibers should always be each others' alternates. " + 'This error is likely caused by a bug in React. Please file an issue.');
       }
-    } // If the root is not a host container, we're in a disconnected tree. I.e.
+    } // If the root is not a host components, we're in a disconnected tree. I.e.
     // unmounted.
 
 
