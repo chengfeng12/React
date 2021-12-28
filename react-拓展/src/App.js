@@ -1,4 +1,4 @@
-import Demo from "./components/5.Context";
+import Demo from "./components/6. optimize 控制组件更新";
 
 function App() {
     return (
