@@ -3,7 +3,7 @@ import "./index.css";
 
 // Component 普通形式 render 会随着 state 的更新跟着更新, 子组件也会重新调用 render
 // 注意：如果通过 setState 传递空值 也会导致 render 重新渲染 子组件没有用到父组件的状态，也会重新 render
-// PureComponent 会自动比较值是否发生变化，如果变化，则会调用 render 方法，否则不会渲染
+// PureComponent 重写了 shouldComponentUpdate ，会自动比较值是否发生变化，如果变化，则会调用 render 方法，否则不会渲染
 // 注意： 采用浅比较，对比的是堆中的地址，所以不建议返回原数据，希望返回新的引用类型数据 (类似 reduces 中纯函数 )
 class Parent extends PureComponent {
     state = {

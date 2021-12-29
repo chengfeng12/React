@@ -1,4 +1,4 @@
-import Demo from "./components/6. optimize 控制组件更新";
+import Demo from "./components/7. props Render 父子组件写法";
 
 function App() {
     return (
