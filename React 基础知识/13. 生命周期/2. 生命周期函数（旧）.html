@@ -68,6 +68,7 @@
         // 卸载组建
         ReactDOM.unmountComponentAtNode(document.getElementById('App'));
       }
+
       // 强制更新
       force = () => {
         console.log("Count---forceUpdate");
@@ -81,6 +82,11 @@
       // 组件挂载完毕调用
       componentDidMount() {
         console.log("Count---componentDidMount");
+      }
+
+      // 组件将要接收到新属性钩子（第一次不执行，state 更新时执行）
+      componentWillReceiveProps(props) {
+        console.log("Count---componentWillReceiveProps", props);
       }
 
       // 组件卸载之前调用
@@ -203,10 +209,11 @@
         )
       }
     }
-    // ReactDOM.render(<MyComponents />, document.getElementById('App'));
+    
+    ReactDOM.render(<MyComponents />, document.getElementById('App'));
 
 
-    ReactDOM.render(<Father />, document.getElementById('App'));
+    // ReactDOM.render(<Father />, document.getElementById('App'));
   </script>
 </body>
 </html>
