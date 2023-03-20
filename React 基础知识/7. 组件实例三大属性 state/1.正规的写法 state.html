@@ -35,21 +35,21 @@
       // 事件触发几次调用几次 
 
       /**
-       * switchEvent 放在哪里？ ---> MyCompontent 的原型上，供实例使用
+       * switchEvent 放在哪里？ -> MyCompontent 的原型上，供实例使用
        * 由于 switchEvent 是作为 onClick 的回调， 所以不是通过实例调用的，是直接调用
        * 类中的方法默认开启局部严格模式，所以 switchEvent 中的 this 为 undefined
-        */
+      */
       switchEvent() {
         this.setState({
           isHot: !this.state.isHot
         })
-
         // 不能直接修改属性的值，需要通过 setState 方法修改属性，且是合并，不是替换的方式
         // this.state.isHot = !this.state.isHot;
       }
       
       // 调用 1 + n 次， 1 是初始化， n 是数据发生改变，更新视图
       render() {
+        console.log('render')
         return (
           <h1 id="title" onClick={this.switchEvent}>今天天气很{`${this.state.isHot ? '炎热' : '凉爽'}`}，{this.state.msg}!!!</h1>
         )

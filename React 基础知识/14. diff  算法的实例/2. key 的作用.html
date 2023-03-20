@@ -117,6 +117,12 @@
           ]
         })
       }
+      delPerson = (index) => {
+        console.log(index, 'index')
+        this.setState({
+          personList: this.state.personList.splice(index, 1)
+        })
+      }
       
       render() {
         return (
@@ -128,11 +134,8 @@
               {
                 this.state.personList.map((item, index) => {
                   return <li key={index}>
-                    <li>
                       index: {index} name: {item.name} ------ age: {item.age}
                       <input type="text" />
-                      
-                    </li>  
                   </li>
                 })
               }
@@ -144,14 +147,26 @@
               {
                 this.state.personList.map((item, index) => {
                   return <li key={item.id}>
-                    <li>
                       id: {item.id} name: {item.name} ------ age: {item.age}
                       <input type="text" />
-                    </li>  
                   </li>
                 })
               }
             </ul>
+
+            <hr />
+            <hr />
+            <ul>
+              {
+                this.state.personList.map((person, index) => {
+                  return <div key={index}>
+                    <input type="text" />
+                    {person.name}
+                    <span onClick={() => this.delPerson(index)}>X</span>
+                  </div>
+                })
+              }
+              </ul>
           </div>
         )
       }

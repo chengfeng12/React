@@ -6,105 +6,118 @@
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%
  * @FilePath: /React 框架/react-拓展/src/components/3.hooks/index.jsx
  */
-import React, {Component} from 'react';
-import ReactDOM from "react-dom"
+import React, { Component, useEffect } from "react";
+import ReactDOM from "react-dom";
 
 // 类似组件
 class Demo1 extends Component {
-    state = {
-        count: 0
+  state = {
+    count: 0,
+  };
+  add = () => {
+    let { count } = this.state;
+    let { value } = this.countRef;
+    if (isNaN(value) || value.length === 0) {
+      count += 1;
+    } else count += Number(value);
+    this.setState({
+      count,
+    });
+  };
+  reduce = () => {
+    let { count } = this.state;
+    let { value } = this.countRef;
+    if (isNaN(value) || value.length === 0) {
+      count -= 1;
+    } else count -= Number(value);
+    this.setState({
+      count,
+    });
+  };
+  show = () => {
+    console.log(this.countRef.value);
+  };
+  countRef = React.createRef();
+  componentDidMount = () => {
+    console.log("componentDidMount");
+    this.timer = setInterval(() => {
+      this.add();
+    }, 1000);
+  };
+  componentDidUpdate(e, e2) {
+    console.log(e, e2, "componentDidUpdate");
+  }
+  componentWillUnmount = () => {
+    console.log("componentWillUnmount");
+    if (this.timer) {
+      clearInterval(this.timer);
     }
-
-    increment = (num) => {
-        this.setState(state => ({ count: state.count + 1}))
-    }
-
-    // 查看输入框中的值
-    showInputValue = () => {
-        alert(this.inputRef.current.value)
-    }
-
-    componentDidMount() {
-        this.timer = setInterval(() => {
-            this.increment()
-        }, 1000)
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer);
-    }
-
-    // 卸载组件
-    unComponent = () => {
-        ReactDOM.unmountComponentAtNode(document.getElementById("root"));
-    }
-
-    // ref
-    inputRef = React.createRef();
-
-    render() {
-        return (
-            <div>
-                <h2>setState 组件：{ this.state.count }</h2>
-                <input placeholder="请输入一个数字" ref={this.inputRef}/>
-                <button onClick={this.increment}>点击 +1</button>
-                <button onClick={this.unComponent}>卸载组件</button>
-                <button onClick={this.showInputValue}>查看输入框中的值</button>
-            </div>
-        );
-    }
+  };
+  unMount = () => {
+    ReactDOM.unmountComponentAtNode(document.querySelector("#root"));
+  };
+  render() {
+    let { count } = this.state;
+    return (
+      <div>
+        <h1>{count}</h1>
+        <input type="number" ref={this.countRef} />
+        <button onClick={this.add}>+</button>
+        <button onClick={this.reduce}>-</button>
+        <button onClick={this.show}>show</button>
+        <button onClick={this.unMount}>unMount</button>
+      </div>
+    );
+  }
 }
 
 // 函数式组件 Hooks
 function Demo() {
-
-    const [{count}, setCount] = React.useState({count: 0})
-
-    const [{name}, setName] = React.useState({name: 'test'})
-
-    const increment = () => {
-        setCount(state => ({count: state.count + 1}))
-    }
-
-    const changeName = () => {
-        setName(state => ({ name: "test" + new Date().getTime()}))
-    }
-    // 查看输入框中的值
-    const  showInputValue = () => {
-        alert(inputRef.current.value)
-    }
-
-    const unComponent = () => {
-        ReactDOM.unmountComponentAtNode(document.getElementById("root"));
-    }
-    // 副作用 模拟 生命h周期
-    React.useEffect(() => {
-        console.log('初次相当于 componentDidMount');
-        console.log('再次执行 componentDidUpdate');
-        // let timer = setInterval(() => {
-        //     increment()
-        // }, 1000)
-        return () => { // 每次都会执行
-            console.log('相当于 componentWillUnmount')
-            // clearInterval(timer);
+  let [count, setCount] = React.useState(0);
+  const countRef = React.createRef();
+  const add = () => {
+    let { value } = countRef;
+    if (isNaN(value) || value.length === 0) {
+      count += 1;
+    } else count += Number(value);
+    setCount(count);
+  };
+  const reduce = () => {
+    let { value } = countRef;
+    if (isNaN(value) || value.length === 0) {
+      count -= 1;
+    } else count -= Number(value);
+    setCount(count);
+  };
+  React.useEffect(() => {
+    console.log('componentDidMount');
+    console.log('再次执行 componentDidUpdate');
+    let timer = setInterval(() => {
+        add();
+    }, 1000)
+    return () => {
+        if (timer) {
+            clearInterval(timer)
         }
-    }, [count]) // 第二个参数相当于要监听的变量，相当于 componentDidUpdate，不传就不会执行
-
-    // ref
-    const inputRef = React.useRef();
-
-    return (
-        <div>
-            <h2>setState 组件：{ count }</h2>
-            <input placeholder="请输入一个数字" ref={inputRef} />
-            <button onClick={increment}>点击 +1</button>
-            <button onClick={changeName}>改变名字</button>
-            <button onClick={unComponent}>卸载组件</button>
-            <button onClick={showInputValue}>查看输入框中的值</button>
-
-            <h1>{name}</h1>
-        </div>
-    )
+        console.log('componentWillUnmount')
+    }
+  }, [count])
+  const show = () => {
+    console.log(countRef.value);
+  };
+  const unMount = () => {
+    ReactDOM.unmountComponentAtNode(document.querySelector('#root'));
+  };
+  return (
+    <div>
+      <h1>{count}</h1>
+      <input type="number" ref={countRef} />
+      <button onClick={add}>+</button>
+      <button onClick={reduce}>-</button>
+      <button onClick={show}>show</button>
+      <button onClick={unMount}>unMount</button>
+    </div>
+  );
 }
 
-export default Demo
+export default Demo;

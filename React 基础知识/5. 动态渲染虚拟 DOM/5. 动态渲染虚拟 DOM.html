@@ -27,7 +27,7 @@
     const VDOM = <div>
       <h1>动态渲染内容</h1>
       {
-        data.map(item => <p>{item}</p>)
+        data.map(item => <p key={item}>{item}</p>)
       }  
     </div>
     // 2. 渲染虚拟 DOM 到页面
