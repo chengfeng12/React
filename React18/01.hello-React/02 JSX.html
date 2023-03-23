@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSX</title>
+  <script src="./react.production.min.js"></script>
+  <script src="./react-dom.production.min.js"></script>
+  <script src="./babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  /**
+   * 无论是双标签还是单标签都要有结尾符号
+   * {} 中只能写表达式 undefined null boolean的值都无法展示
+   * [] 中放入 jsx 元素，会直接进行渲染
+   */
+  const button = <button className="btn" onClick={() => {
+    alert('点我了')
+    root.render(div2)
+  }}>点我一下</button>
+
+  const list = [
+    {
+      name: '张三'
+    },
+    {
+      name: '李四'
+    }
+  ]
+
+  const div = <div className="test">
+    这是一段内容
+    {button}
+    { undefined }
+    { null }
+    { false }
+    <ul>
+      {
+        list.map(item => <li>{item.name}</li>)
+      }
+      </ul>
+  </div>
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(div)
+
+  const div2 = <div className="test">
+    这是一段内容2222
+    {button}
+  </div>
+
+</script>
+
+</html>

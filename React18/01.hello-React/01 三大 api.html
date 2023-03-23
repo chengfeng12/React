@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./react.production.min.js"></script>
+  <script src="./react-dom.production.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  console.log(React, ReactDOM, 'React');
+  /**
+   * createElement
+   *    创建 react 元素
+   *      元素一旦创建就无法修改，推荐直接创建新元素，进行替换
+   */
+  const button = React.createElement('button', {
+    onClick: () => {
+      alert('点我了')
+      // 只更新了文本内容
+      root.render(div2)
+    }
+  }, '点我一下');
+
+  const div = React.createElement('div', { class: 'test' }, '这是一段内容', button);
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  /**
+   * render 每次调用时都会进行 diff，最小化更新
+   */
+  root.render(div)
+
+  /**
+   * React 18 之前版本是,
+   * 不需要直接创建根元素，会把 vNode 插入指定根节点
+   */
+  // ReactDOM.render(div, document.getElementById('root'))
+
+  const div2 = React.createElement('div', { class: 'test'}, '这是一段内容2222', button)
+  
+</script>
+
+</html>
