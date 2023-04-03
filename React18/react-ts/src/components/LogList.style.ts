@@ -8,5 +8,6 @@ export const LogListContainer = styled(CardDiv)({
 export const EmptyDiv = styled.div(() => ({
   textAlign: 'center',
   fontSize: '18px',
-  color: '#ccc'
+  color: '#ccc',
+  margin: '80px 0'
 }))

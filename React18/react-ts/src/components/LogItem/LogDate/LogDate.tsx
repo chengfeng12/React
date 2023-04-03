@@ -15,7 +15,7 @@ const DateHead = styled.div(() => ({
   backgroundColor: '#f40'
 }))
 const DateTime = styled.div(() => ({
-  fontSize: '18px',
+  fontSize: '24px',
   fontWeight: 'bold',
   lineHeight: '46px',
   backgroundColor: '#fff'
@@ -25,7 +25,7 @@ export default function LogDate(props: {
 }) {
   const getDate = () => {
     let month = new Date(props.date).toLocaleDateString('zh', { month: "long" });
-    let day = new Date(props.date).getDay() + 1 + '';
+    let day = new Date(props.date).getDate() + '';
     return [month, day]
   }
   const [month, day]: string[] = getDate()

@@ -2,7 +2,7 @@ import {css} from '@emotion/react'
 import styled from '@emotion/styled'
 export const AppMain = styled.div(() => {
   return {
-    width: '65%',
+    width: '50%',
     margin: '100px auto 0'
   }
 })
