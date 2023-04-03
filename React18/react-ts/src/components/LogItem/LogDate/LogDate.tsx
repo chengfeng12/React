@@ -24,9 +24,8 @@ export default function LogDate(props: {
   date: string
 }) {
   const getDate = () => {
-    let month = '3月';
-    let day = '4号';
-    console.log(new Date(props.date).toLocaleDateString('zh'), '2222');
+    let month = new Date(props.date).toLocaleDateString('zh', { month: "long" });
+    let day = new Date(props.date).getDay() + 1 + '';
     return [month, day]
   }
   const [month, day]: string[] = getDate()

@@ -1,25 +1,14 @@
-// import {ReactElement} from 'react';
 import LogItem from "./LogItem/LogItem";
-import {LogListContainer} from './LogList.style'
+import {LogListContainer, EmptyDiv} from './LogList.style'
+import {TaskType} from '../App.type'
 
-function LogList() {
-  const dateList = [{
-    title: 'day 1',
-    content: '第一天学习愉快',
-    date: '2020-03-02'
-  }, {
-    title: 'day 2',
-    content: '第二天学习，太简单了',
-    date: '2020-03-05'
-  }, {
-    title: 'day 2',
-    content: '第三天学习，差不多学完了',
-    date: '2020-03-09'
-  }]
+function LogList(props: any) {
+  const { list } = props
+  const List = list.length ? list.map((item: TaskType) => <LogItem {...item} key={item.id}></LogItem>) : <EmptyDiv>暂无学习任务！</EmptyDiv>
   return (
     <LogListContainer>
       {
-        dateList.map(item => <LogItem {...item}></LogItem>)
+        List
       }
     </LogListContainer>
   );
