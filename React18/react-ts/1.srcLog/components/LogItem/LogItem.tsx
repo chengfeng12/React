@@ -7,12 +7,13 @@ export default function LogItem(props: {
   title: string,
   content: string,
   date: string,
+  removeTask: (id: number) => void;
 }) {
-  const { title, content, date, id } = props
+  const { title, content, date, id, removeTask } = props
   return (
     <LogItemContainer>
       <LogDate date={date}></LogDate>
-      <LogContent title={title} content={content} id={id}></LogContent>
+      <LogContent removeTask={() => removeTask(id)} title={title} content={content}></LogContent>
     </LogItemContainer>
   );
 }

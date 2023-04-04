@@ -1,13 +1,15 @@
-import { useState, createContext } from "react";
+import { useState } from "react";
+import { ConfigProvider } from "antd";
 import "antd/dist/reset.css";
+import zhCN from "antd/locale/zh_CN";
+// 日期组件中文包
+import "dayjs/locale/zh-cn";
 import appStyle, { AppMain } from "./App.style";
 import { Global } from "@emotion/react";
 import LogList from "./components/LogList";
 import AddStudy from "./components/Add/AddStudy";
 import { TaskType } from "./App.type";
 import ConfirmDialog from "./components/ConfirmDialog/ConfirmDialog";
-export const LogsContext = createContext({})
-
 function App() {
   const [dateList, setDateList] = useState([
     {
@@ -58,7 +60,7 @@ function App() {
 
   let [tempId, setTempId] = useState<number | null>(null);
   const removeTask = (id: number) => {
-    setTempId(id);
+    setTempId(id)
     open();
     // console.log(id, 'id');
     // const index = dateList.findIndex(item => item.id === id)
@@ -79,24 +81,30 @@ function App() {
     }
     setDateList([...dateList]);
     console.log(dateList, "dateList");
-    close();
+    close()
   };
   const [showRemoveDia, setShowRemoveDia] = useState(false);
   return (
-    <AppMain className="App">
-      <Global styles={appStyle()}></Global>
-      <LogsContext.Provider value={{
-        removeTask
-      }}>
+    <ConfigProvider
+      locale={zhCN}
+      theme={{
+        token: {
+          colorPrimary: "#00b96b",
+        },
+      }}
+    >
+      <AppMain className="App">
+        <Global styles={appStyle()}></Global>
         <AddStudy createTask={createTask}></AddStudy>
-        <LogList list={dateList}></LogList>
-        <ConfirmDialog
-          handleClose={close}
-          show={showRemoveDia}
-          handleConfirm={handleConfirm}
-        ></ConfirmDialog>
-      </LogsContext.Provider>
-    </AppMain>
+        <LogList list={dateList} removeTask={removeTask}></LogList>
+      </AppMain>
+
+      <ConfirmDialog
+        handleClose={close}
+        show={showRemoveDia}
+        handleConfirm={handleConfirm}
+      ></ConfirmDialog>
+    </ConfigProvider>
   );
 }
 
