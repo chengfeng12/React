@@ -1,0 +1,42 @@
+.foods-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 10px 10px 0;
+  border-bottom: 1px solid #f1f1f1;
+  margin-left: 10px;
+}
+
+.foods-item img {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.foods-item .main .content {
+  padding-right: 10px;
+}
+.foods-item h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.foods-item p {
+  color: #999;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+}
+.foods-item .price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.price-count {
+  color: #333;
+  font-size: 16px;
+}
+
+.price-count::before {
+  content: "¥";
+  font-size: 12px;
+}
