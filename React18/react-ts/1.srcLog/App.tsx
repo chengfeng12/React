@@ -94,7 +94,7 @@ function App() {
       }}
     >
       <AppMain className="App">
-        <Global styles={appStyle()}></Global>
+        <Global ≈={appStyle()}></Global>
         <AddStudy createTask={createTask}></AddStudy>
         <LogList list={dateList} removeTask={removeTask}></LogList>
       </AppMain>

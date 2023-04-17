@@ -11,6 +11,7 @@ export interface FoodContextType {
   totalCount: number,
   totalPrice: number,
   cartList: FoodItemType[],
+  foods: FoodItemType[],
   addFood: (item: FoodItemType) => void,
   removeFood: (item: FoodItemType) => void
 }

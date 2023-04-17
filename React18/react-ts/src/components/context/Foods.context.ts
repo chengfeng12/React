@@ -4,6 +4,7 @@ const FoodsContext = createContext<FoodContextType>({
   totalCount: 0,
   totalPrice: 0,
   cartList: [],
+  foods: [],
   addFood: () => {},
   removeFood: () => {},
 })

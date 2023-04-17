@@ -121,6 +121,7 @@ export default function Foods() {
         ...cartInfo,
         addFood,
         removeFood,
+        foods: foodList
       }}
     >
       <FilterSearch></FilterSearch>

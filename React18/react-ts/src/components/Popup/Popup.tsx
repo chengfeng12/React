@@ -1,12 +1,21 @@
-import React from 'react';
-import { Global } from  '@emotion/react'
-import {PopupContent, CancelBtn, ConfirmBtn, PopupCss, PoputMain} from './DialogStyle'
+import React, {EventHandler, useState} from 'react';
+import {CloseOutlined} from '@ant-design/icons'
+import {Global} from '@emotion/react'
+import {PopupContent, CancelBtn, ConfirmBtn, PopupCss, PoputMain} from './PopupStyle'
 import Modal from "@/components/Modal/Modal";
 
+const setBodyHidden = (isHidden: boolean) => {
+  let htmlDom = document.documentElement
+  htmlDom.style.overflow = isHidden ? 'hidden' : 'visible'
+  console.log(htmlDom.style, 'isHidden')
+}
 const Popup = (props: any) => {
-  const confirg = {
+  let {visible = false, cancel} = props
+  setBodyHidden(visible)
+  const {showFooter = false, closeIcon = true, showHeader = true, title = '', ...residue} = props;
+  const config = {
     type: 'base',
-    message: '',
+    position: 'bottom',
     ...props
   }
   const createConfirm = (text: string) => {
@@ -14,13 +23,21 @@ const Popup = (props: any) => {
       {text}
     </ConfirmBtn>
   }
-  const  cretateFooter = () => {
-    return <div className={`footer footer-${confirg.type}`}>
+  const cretateHeader = () => {
+    return <div className={`popup-header`}>
+      <p className='popup-title'>
+        {title}
+      </p>
+      <CloseOutlined className="popup-close"></CloseOutlined>
+    </div>
+  }
+  const cretateFooter = () => {
+    return <div className={`footer footer-${config.type}`}>
       {
         <>
-          { config.cancel && <CancelBtn className="cancel" onClick={cancelHandler}>
+          {config.cancel && <CancelBtn className="cancel" onClick={cancelHandler}>
               取消
-          </CancelBtn> }
+          </CancelBtn>}
           {
             createConfirm('确认')
           }
@@ -30,27 +47,32 @@ const Popup = (props: any) => {
   }
   const createContent = () => {
     return <PopupContent>
-      {
-        confirg.message ? confirg.message : props.children
-      }
+      {props.children}
     </PopupContent>
   }
 
   const cancelHandler = () => {
-
+    cancel();
   }
   const confirmHandler = () => {
-
+    cancel();
+  }
+  const PoputMainDom = PoputMain(props)
+  const clickHandle = (e: any) => {
+    e.stopPropagation()
   }
   return (
     <>
-      <Global styles={PopupCss()}></Global>
-      <Modal>
-        <PoputMain>
-          {createContent()}
-          {cretateFooter()}
-        </PoputMain>
-      </Modal>
+      <Global styles={PopupCss(props)}></Global>
+      {
+        visible && <Modal>
+            <PoputMainDom className={`popup popup-${config.position}`} onClick={clickHandle}>
+              {showHeader ? cretateHeader() : null}
+              {createContent()}
+              {showFooter ? cretateFooter() : null}
+            </PoputMainDom>
+        </Modal>
+      }
     </>
   );
 };
