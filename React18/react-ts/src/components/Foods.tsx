@@ -2,6 +2,8 @@ import { useState } from "react";
 import FoodsContext from "./context/Foods.context";
 import FoodItem from "./FoodItem/FoodItem";
 import { FoodItemType, FoodContextType } from "./Foods.type";
+import FilterSearch from "./FilterSearch/FilterSearch";
+import {FoodList} from './Foods.style'
 const FOODS_LIST: FoodItemType[] = [
   {
     id: 1,
@@ -121,7 +123,10 @@ export default function Foods() {
         removeFood,
       }}
     >
-      {list}
+      <FilterSearch></FilterSearch>
+      <FoodList>
+        {list}
+      </FoodList>
     </FoodsContext.Provider>
   );
 }
