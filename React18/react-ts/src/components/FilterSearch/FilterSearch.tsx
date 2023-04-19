@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "@emotion/styled";
 import {Input} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
@@ -15,29 +15,27 @@ const FilterSearchBox = styled.div({
   backgroundColor: "#fff",
 });
 export default function FilterSearch() {
-  let [searchValue, setSearchValue] = useState('')
+  const [keyword, setKeyword] = useState("");
+  useEffect(() => {
+    setShowPopup(Boolean(keyword))
+  }, [keyword])
   let [showPopup, setShowPopup] = useState(false)
-  // : React.KeyboardEventHandler<HTMLInputElement>
-  const onBlurHandler = (e: any) => {
-    console.log(e.target.value);
-    setSearchValue(e.target.value)
+  const onChangeHandler = (e: any) => {
+    setKeyword(e.target.value.trim());
   };
-  const onFocusHandler = () => {
-    setShowPopup(true)
-  }
   const onClosePopup = () => {
     setShowPopup(false)
+    setKeyword('')
   }
-  // onBlur={(e) => onBlur}
   return (
     <FilterSearchBox>
       <Input
+        value={keyword}
         prefix={<SearchOutlined/>}
         placeholder="请输入搜索条件"
-        onFocus={onFocusHandler}
-        onBlur={onBlurHandler}
+        onChange={onChangeHandler}
       />
-      <FilterSearchFoods searchValue={searchValue} cancel={onClosePopup} visible={showPopup}></FilterSearchFoods>
+      <FilterSearchFoods searchValue={keyword} cancel={onClosePopup} visible={showPopup}></FilterSearchFoods>
     </FilterSearchBox>
   );
 }

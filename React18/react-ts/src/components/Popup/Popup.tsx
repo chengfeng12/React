@@ -8,7 +8,6 @@ import Modal from "@/components/Modal/Modal";
 const setBodyHidden = (isHidden: boolean) => {
   let htmlDom = document.documentElement
   htmlDom.style.overflow = isHidden ? 'hidden' : 'visible'
-  console.log(htmlDom.style, 'isHidden')
 }
 const Popup = (props: any) => {
   let {visible = false, cancel} = props
