@@ -5,6 +5,7 @@ import FoodItem from "./FoodItem/FoodItem";
 import {FoodItemType, FoodContextType} from "./Foods.type";
 import FilterSearch from "./FilterSearch/FilterSearch";
 import {FoodList} from './Foods.style'
+import Footer from "@/components/Footer/Footer";
 
 const FOODS_LIST: FoodItemType[] = [
   {
@@ -132,6 +133,7 @@ export default function Foods() {
       <FoodList ref={foodsRef}>
         {list}
       </FoodList>
+      <Footer></Footer>
     </FoodsContext.Provider>
   );
 }
