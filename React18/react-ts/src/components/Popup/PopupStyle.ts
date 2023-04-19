@@ -36,6 +36,16 @@ export const PopupCss = (props: any) => {
     },
     '.popup': {
       ...PopupHeader(props),
+    },
+    '.footer': {
+      display: 'flex',
+      padding: '10px 20px'
+    },
+    '.footer-border': {
+      borderTop: '1px solid #f0f0f0'
+    },
+    '.footer-shadow': {
+      boxShadow: '0 2px 6px rgba(0,0,0,.3)'
     }
   })
 }
@@ -47,7 +57,8 @@ export const PopupHeader = (props: any) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '10px'
+      padding: '10px',
+      // borderBottom: '1px solid #f0f0f0'
     },
     '.popup-title': {
       flex: '1'
@@ -67,7 +78,9 @@ export const PoputMain = (props: any) => {
     position: 'absolute',
     overflowY: 'hidden',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    // transition: 'all 5s',
+    // height: 0
   })
 }
 
@@ -86,14 +99,17 @@ export const Button = styled.button({
   fontSize: '14px',
   overflow: 'hidden',
   backgroundColor: '#fff',
-  border: 'none',
   padding: '0',
+  borderRadius: '4px'
 })
 
 export const CancelBtn = styled(Button)({
   color: '#333',
+  marginRight: '20px',
+  border: '1px solid #f0f0f0'
 })
 
 export const ConfirmBtn = styled(Button)({
   color: '#1677ff',
+  border: '1px solid #548fe8'
 })

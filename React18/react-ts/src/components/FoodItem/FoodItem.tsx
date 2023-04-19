@@ -1,11 +1,17 @@
 import Counter from "../Counter/Counter";
 import {FoodItemType} from '../Foods.type'
 import './foodItem.css'
-export default function FoodItem(props: FoodItemType) {
+
+interface PropsTypes extends FoodItemType {
+  type?: string,
+}
+
+export default function FoodItem(props: PropsTypes) {
+  const {type, ...data} = props
   return (
-    <div className="foods-item">
+    <div className={`foods-item foods-item-${type}`}>
       <div className="image">
-        <img src={props.imgUrl} alt={props.title} />
+        <img src={props.imgUrl} alt={props.title}/>
       </div>
       <div className="main">
         <div className="content">
@@ -14,7 +20,7 @@ export default function FoodItem(props: FoodItemType) {
         </div>
         <div className="price">
           <span className="price-count">{props.price}</span>
-          <Counter {...props}></Counter>
+          <Counter {...data}></Counter>
         </div>
       </div>
     </div>

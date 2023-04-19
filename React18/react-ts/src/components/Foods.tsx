@@ -1,9 +1,11 @@
-import { useState } from "react";
+import {useState, useRef, useEffect} from "react";
+import autoAnimate from '@formkit/auto-animate'
 import FoodsContext from "./context/Foods.context";
 import FoodItem from "./FoodItem/FoodItem";
-import { FoodItemType, FoodContextType } from "./Foods.type";
+import {FoodItemType, FoodContextType} from "./Foods.type";
 import FilterSearch from "./FilterSearch/FilterSearch";
 import {FoodList} from './Foods.style'
+
 const FOODS_LIST: FoodItemType[] = [
   {
     id: 1,
@@ -80,13 +82,15 @@ const FOODS_LIST: FoodItemType[] = [
 ];
 export default function Foods() {
   const [foodList, setFoodList] = useState(FOODS_LIST);
-  const [cartInfo, setCartinfo] = useState<
-    Pick<FoodContextType, "totalCount" | "totalPrice" | "cartList">
-  >({
+  const [cartInfo, setCartinfo] = useState<Pick<FoodContextType, "totalCount" | "totalPrice" | "cartList">>({
     totalCount: 0,
     totalPrice: 0,
     cartList: [],
   });
+  const foodsRef = useRef(null)
+  useEffect(() => {
+    foodsRef.current && autoAnimate(foodsRef.current)
+  }, [foodsRef])
   const addFood = (item: FoodItemType) => {
     setCount('add', item)
     // console.log(item, "add");
@@ -125,7 +129,7 @@ export default function Foods() {
       }}
     >
       <FilterSearch></FilterSearch>
-      <FoodList>
+      <FoodList ref={foodsRef}>
         {list}
       </FoodList>
     </FoodsContext.Provider>

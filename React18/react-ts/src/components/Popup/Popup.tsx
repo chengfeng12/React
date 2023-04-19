@@ -1,4 +1,5 @@
-import React, {EventHandler, useState} from 'react';
+import React, {useRef, useState} from 'react';
+import {Transition} from 'react-transition-group'
 import {CloseOutlined} from '@ant-design/icons'
 import {Global} from '@emotion/react'
 import {PopupContent, CancelBtn, ConfirmBtn, PopupCss, PoputMain} from './PopupStyle'
@@ -16,6 +17,7 @@ const Popup = (props: any) => {
   const config = {
     type: 'base',
     position: 'bottom',
+    border: false,
     ...props
   }
   const createConfirm = (text: string) => {
@@ -28,11 +30,11 @@ const Popup = (props: any) => {
       <p className='popup-title'>
         {title}
       </p>
-      <CloseOutlined className="popup-close"></CloseOutlined>
+      <CloseOutlined className="popup-close" onClick={cancelHandler}></CloseOutlined>
     </div>
   }
   const cretateFooter = () => {
-    return <div className={`footer footer-${config.type}`}>
+    return <div className={`footer footer-${config.border} footer-shadow`}>
       {
         <>
           {config.cancel && <CancelBtn className="cancel" onClick={cancelHandler}>
@@ -61,16 +63,21 @@ const Popup = (props: any) => {
   const clickHandle = (e: any) => {
     e.stopPropagation()
   }
+  const popupRef = useRef(null)
+  const [open, setOpen] = useState(true)
   return (
     <>
       <Global styles={PopupCss(props)}></Global>
       {
-        visible && <Modal>
-            <PoputMainDom className={`popup popup-${config.position}`} onClick={clickHandle}>
-              {showHeader ? cretateHeader() : null}
-              {createContent()}
-              {showFooter ? cretateFooter() : null}
-            </PoputMainDom>
+        visible &&
+        <Modal>
+            <Transition nodeRef={popupRef} in={open} timeout={1500}>
+                <PoputMainDom ref={popupRef} className={`popup popup-${config.position}`} onClick={clickHandle}>
+                  {showHeader ? cretateHeader() : null}
+                  {createContent()}
+                  {showFooter ? cretateFooter() : null}
+                </PoputMainDom>
+            </Transition>
         </Modal>
       }
     </>

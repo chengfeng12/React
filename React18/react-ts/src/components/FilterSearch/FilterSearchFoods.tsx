@@ -3,6 +3,7 @@ import {useContext} from 'react';
 import Popup from "@/components/Popup/Popup";
 import FoodItem from "@/components/FoodItem/FoodItem";
 import FoodsContext from "@/components/context/Foods.context";
+import {FoodItemType} from "@/components/Foods.type";
 
 const FilterSearchFoods = (props: {
   searchValue: string,
@@ -10,9 +11,10 @@ const FilterSearchFoods = (props: {
   cancel?: () => void
 }) => {
   const {foods} = useContext(FoodsContext);
-  const list = props.searchValue ?
-    foods.filter(food => food.title.includes((props.searchValue))).map(food => <FoodItem {...food}></FoodItem>)
-    : [];
+  const list = () => {
+    const data = props.searchValue ? foods.filter(food => food.title.includes((props.searchValue))) : foods
+    return data.map((food: FoodItemType) => <FoodItem type='reduce' key={food.id} {...food}></FoodItem>)
+  };
   const popupConfig = {
     ...props,
     round: false,
@@ -21,7 +23,7 @@ const FilterSearchFoods = (props: {
   }
   return (<div>
     <Popup {...popupConfig}>
-      {list}
+      {list()}
     </Popup>
   </div>);
 };
