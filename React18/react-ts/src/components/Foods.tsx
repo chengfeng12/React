@@ -105,6 +105,7 @@ export default function Foods() {
     setCount('subtract', item)
   };
   const setCount = (type: string, item: FoodItemType) => {
+    console.log('触发了');
     const newList = foodList.map(food => {
       if (item.id === food.id) {
         return {
@@ -114,6 +115,24 @@ export default function Foods() {
       }
       return food
     })
+    if (type === 'add') {
+      setCartinfo(pre => {
+        console.log(pre, 'pre')
+        return {
+          ...pre,
+          totalCount: pre.totalCount + 1,
+          totalPrice: pre.totalPrice + item.price
+        }
+      })
+    } else {
+      setCartinfo(pre => {
+        return {
+          ...pre,
+          totalCount: (pre.totalCount - 1) || 0,
+          totalPrice: (pre.totalPrice - item.price) || 0
+        }
+      })
+    }
     setFoodList(newList)
   }
   const list = foodList.map((item: FoodItemType) => (
