@@ -81,12 +81,16 @@ const FOODS_LIST: FoodItemType[] = [
     count: 0,
   },
 ];
+export type initCartType = Pick<FoodContextType, "totalCount" | "totalPrice" | "cartList">
+export const initCart: initCartType = {
+  totalCount: 0,
+  totalPrice: 0,
+  cartList: [],
+}
 export default function Foods() {
   const [foodList, setFoodList] = useState(FOODS_LIST);
-  const [cartInfo, setCartinfo] = useState<Pick<FoodContextType, "totalCount" | "totalPrice" | "cartList">>({
-    totalCount: 0,
-    totalPrice: 0,
-    cartList: [],
+  const [cartInfo, setCartinfo] = useState<initCartType>({
+    ...initCart
   });
   const foodsRef = useRef(null)
   useEffect(() => {
@@ -94,27 +98,35 @@ export default function Foods() {
   }, [foodsRef])
   const addFood = (item: FoodItemType) => {
     setCount('add', item)
-    // console.log(item, "add");
-    // let newCartData = {
-    //   ...cartInfo
-    // };
-    // newCartData.cartList.push(item);
-    // setCartinfo(newCartData)
   };
   const removeFood = (item: FoodItemType) => {
     setCount('subtract', item)
   };
   const setCount = (type: string, item: FoodItemType) => {
-    console.log('触发了');
-    const newList = foodList.map(food => {
+    let index = null;
+    const newList = foodList.map((food, i) => {
       if (item.id === food.id) {
-        return {
-          ...food,
-          count: type === 'add' ? food.count + 1 : food.count - 1
+        index = i
+        let tempFood = {...food};
+        if (type === 'add') {
+          tempFood.count = food.count + 1
+        } else {
+          tempFood.count = food.count - 1
         }
+        return tempFood
       }
       return food
     })
+
+    cartInfo.cartList = newList.filter(food => food.count);
+    // if (index !== null) {
+    //   const cartIndex = cartInfo.cartList.findIndex(food => food.id === item.id)
+    //   if (cartIndex >= 0) {
+    //     cartInfo.cartList[cartIndex] = newList[index]
+    //   } else {
+    //     cartInfo.cartList.push(newList[index])
+    //   }
+    // }
     if (type === 'add') {
       setCartinfo(pre => {
         console.log(pre, 'pre')
@@ -128,12 +140,26 @@ export default function Foods() {
       setCartinfo(pre => {
         return {
           ...pre,
+          cartList: cartInfo.cartList,
           totalCount: (pre.totalCount - 1) || 0,
           totalPrice: (pre.totalPrice - item.price) || 0
         }
       })
     }
     setFoodList(newList)
+  }
+  const clearFood = () => {
+    setFoodList(FOODS_LIST)
+  }
+  const clearCartinfo = () => {
+    setCartinfo(pre => {
+      return {
+        ...pre,
+        ...initCart,
+        cartList: []
+      }
+    })
+    clearFood();
   }
   const list = foodList.map((item: FoodItemType) => (
     <FoodItem {...item} key={item.id}></FoodItem>
@@ -152,7 +178,7 @@ export default function Foods() {
       <FoodList ref={foodsRef}>
         {list}
       </FoodList>
-      <Footer></Footer>
+      <Footer clearCartinfo={clearCartinfo}></Footer>
     </FoodsContext.Provider>
   );
 }

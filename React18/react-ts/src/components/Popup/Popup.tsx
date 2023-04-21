@@ -10,7 +10,10 @@ const setBodyHidden = (isHidden: boolean) => {
   htmlDom.style.overflow = isHidden ? 'hidden' : 'visible'
 }
 const Popup = (props: any) => {
-  let {visible = false, cancel} = props
+  let {
+    visible = false, cancel = () => {
+    }
+  } = props
   setBodyHidden(visible)
   const {showFooter = false, closeIcon = true, showHeader = true, title = '', ...residue} = props;
   const config = {
@@ -29,7 +32,10 @@ const Popup = (props: any) => {
       <p className='popup-title'>
         {title}
       </p>
-      <CloseOutlined className="popup-close" onClick={cancelHandler}></CloseOutlined>
+      <div className="popup-close">
+        {props.closeNode ? props.closeNode : <CloseOutlined onClick={cancelHandler}></CloseOutlined>}
+      </div>
+
     </div>
   }
   const cretateFooter = () => {
@@ -69,7 +75,7 @@ const Popup = (props: any) => {
       <Global styles={PopupCss(props)}></Global>
       {
         visible &&
-        <Modal>
+        <Modal cancel={cancel}>
             <Transition nodeRef={popupRef} in={open} timeout={1500}>
                 <PoputMainDom ref={popupRef} className={`popup popup-${config.position}`} onClick={clickHandle}>
                   {showHeader ? cretateHeader() : null}

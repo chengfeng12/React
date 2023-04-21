@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 
+const height = '40px'
 export const FooterContainer = styled.div({
   position: 'fixed',
-  zIndex: '999',
-  width: '80%',
+  zIndex: '9999',
+  width: '85%',
   backgroundColor: '#333',
   borderRadius: '20px',
-  bottom: '40px',
+  bottom: '30px',
   left: '50%',
   transform: 'translate(-50%, 0)',
   display: 'flex',
@@ -43,7 +44,8 @@ export const FooterContainer = styled.div({
       fontSize: '16px',
       padding: '0',
       margin: '0',
-      lineHeight: '40px',
+      lineHeight: height,
+      height: height,
       '&::before': {
         fontSize: '12px',
         marginRight: '4px',
@@ -56,8 +58,8 @@ export const FooterContainer = styled.div({
       fontSize: '16px',
       fontWeight: 'bold',
       padding: '0 20px',
-      height: '40px',
-      lineHeight: '40px',
+      height: height,
+      lineHeight: height,
       borderRadius: '20px',
     },
     '.gray-settlement': {
