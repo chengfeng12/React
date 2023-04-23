@@ -58,7 +58,6 @@ export const PopupHeader = (props: any) => {
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '10px',
-      // borderBottom: '1px solid #f0f0f0'
     },
     '.popup-title': {
       flex: '1'

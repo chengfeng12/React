@@ -19,7 +19,8 @@ const FilterSearchFoods = (props: {
     ...props,
     round: false,
     position: "bottom",
-    height: 'calc(100% - 53px)'
+    height: 'calc(100vh - 53px)',
+    zIndex: '88'
   }
   return (<div>
     <Popup {...popupConfig}>

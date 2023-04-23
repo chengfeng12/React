@@ -4,16 +4,17 @@ import {createPortal} from 'react-dom'
 
 const createModalMain = (props: {
   backgroundColor?: string,
+  zIndex?: string,
   cancel?: () => void
 }) => {
-  let {backgroundColor = 'rgba(0,0,0,.3)'} = props;
+  let {backgroundColor = 'rgba(0,0,0,.3)', zIndex = '999'} = props;
   return styled.div({
     position: 'fixed',
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
-    zIndex: '999',
+    zIndex: zIndex,
     backgroundColor: backgroundColor,
     overflow: 'hidden'
   })
