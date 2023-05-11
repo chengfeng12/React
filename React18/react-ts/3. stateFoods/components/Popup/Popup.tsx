@@ -2,7 +2,6 @@
 import React, {useRef, useState} from 'react';
 import {Transition} from 'react-transition-group'
 import {CloseOutlined} from '@ant-design/icons'
-import {Global} from '@emotion/react'
 import {PopupContent, CancelBtn, ConfirmBtn, PopupCss, PoputMain} from './PopupStyle'
 import {css} from "@emotion/react";
 import Modal from "@/components/Modal/Modal";
