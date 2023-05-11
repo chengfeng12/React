@@ -1,10 +1,13 @@
 // import { AppMain } from "./App.style";
-import Foods from './components/Foods'
+import Count from './pages/count'
+import CountReducer from './pages/countReducer'
 import './app.css'
+
 function App() {
   return (
     <div className="App">
-      <Foods></Foods>
+      <Count></Count>
+      <CountReducer></CountReducer>
     </div>
   );
 }
