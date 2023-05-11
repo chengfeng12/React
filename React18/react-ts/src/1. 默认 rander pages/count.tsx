@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {CountMain, Button, ButtonBx} from './count.css'
 import A from './A'
 
@@ -9,9 +9,6 @@ const Count = () => {
   const onAdd = () => {
     setCount(count + 1);
   }
-  useEffect(() => {
-
-  }, [count])
   const onReduce = () => {
     setCount(count - 1);
   }
@@ -22,11 +19,7 @@ const Count = () => {
         <Button className="button" onClick={onAdd}>+</Button>
         <Button className="button" onClick={onReduce}>-</Button>
       </ButtonBx>
-      {/*
-        如果向子组件传递的是个静态数据，则自组件也不会发生重新渲染
-        如果传递的有 state 数据，则只要 state 发生变化，自组件都会重新渲染（不论使用不使用）
-      */}
-      <A text='test' text2={count}></A>
+      <A></A>
     </CountMain>
   );
 };
