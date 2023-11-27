@@ -1,12 +1,11 @@
-// import { AppMain } from "./App.style";
-import Count from './pages/count'
+import { AppMain } from "./App.style";
 import './app.css'
 
 function App() {
   return (
-    <div className="App">
-      <Count></Count>
-    </div>
+    <AppMain className="App">
+      123
+    </AppMain>
   );
 }
 

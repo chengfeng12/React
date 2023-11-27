@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 // 日期组件中文包
@@ -22,4 +21,3 @@ root.render(
     <App />
   </ConfigProvider>
 );
-reportWebVitals();

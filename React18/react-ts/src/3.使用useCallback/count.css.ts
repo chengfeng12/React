@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
 
-export const CountMain = styled.div({
-  '.button +.button': {
-    marginLeft: "10px"
-  }
-})
-
 export const Button = styled.div({
   backgroundColor: '#f40',
   color: '#fff',
@@ -27,6 +21,9 @@ const getButtonStyle = (align = 'flex-start') => {
     flexWrap: 'wrap',
     justifyContent: align,
     padding: '10px',
+    '.button + .button': {
+      marginLeft: "10px"
+    }
   })
 }
 export const ButtonBx = getButtonStyle()

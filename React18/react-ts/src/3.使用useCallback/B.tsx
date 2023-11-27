@@ -1,10 +1,10 @@
-import React, {memo} from 'react';
+import {memo} from 'react';
 
 const B = (props: {
   text: string,
   change: () => void
 }) => {
-  console.log('B组件渲染了')
+  console.log('----------------------B组件渲染了')
   return (
     <div>
       B
@@ -12,4 +12,5 @@ const B = (props: {
   );
 };
 
+// export default B;
 export default memo(B);
